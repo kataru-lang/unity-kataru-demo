@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ThinkOptions
+  m_Controller: {fileID: 9100000, guid: 50a6cd8c7a1c94fc88d178de80a96b8a, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 6d32081086d54457f862c42d88fca6d0, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 0ca57495542bf4597aac5eee85f53123, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 09ce4b9b33b614de49da296c75efb187, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 508a537ec2df4481a969e356b6185979, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 683fe5d16bd5f4804a8d33797ac5123b, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 073cec8f160fe45b8a0579ba5573dd89, type: 2}

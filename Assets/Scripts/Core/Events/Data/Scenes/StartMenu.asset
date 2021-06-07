@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcc461f3fd6854f6b88ff12cb2d73518, type: 3}
+  m_Name: StartMenu
+  m_EditorClassIdentifier: 
+  showLoad: 0
+  loadColor: {r: 0, g: 0, b: 0, a: 1}
+  showLoadArt: 0
+  actionMap: UI
+  clips:
+  - {fileID: 8300000, guid: ad9d7b8c2d1044608bc4e6c0ceee8888, type: 3}
+  snapshot: {fileID: -8635090960649245049, guid: a00ed9df125c24097bda258d5a2d8843, type: 2}
+  profile: {fileID: 11400000, guid: 144331eb43ec048998d333ed2164ed01, type: 2}
+  cameraData: {fileID: 0}
+  cameraBgColor: {r: 0.3647059, g: 0.3764706, b: 0.43529412, a: 1}
