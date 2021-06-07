@@ -17,7 +17,7 @@ namespace JnA.Core.ScriptableObjects
 
         public Action<Transform> Follow;
 
-        public Action RevertFollow;
+        public Action StopFollow;
 
         public Action AddPixelPerfect;
 

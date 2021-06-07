@@ -17,30 +17,16 @@ namespace Kataru
         [SerializeField] protected DialogueEvent dialogueEvent;
 
         #region PASSAGE
-        [SerializeField] [Dropdown("NamespaceList")] protected string kataruNamespace;
-        [SerializeField] [Dropdown("PassagesList")] protected string passage;
-        protected List<string> NamespaceList() => Namespaces.All();
-        protected List<string> PassagesList() => Passages.AllInNamespace(kataruNamespace);
+        [SerializeField] [Dropdown("PassagesList")] protected string passage = Passages.None;
+        protected List<string> PassagesList() => Passages.All();
         #endregion
 
 #if UNITY_EDITOR
-        private void OnValidate()
-        {
-            if (string.IsNullOrEmpty(kataruNamespace) && !string.IsNullOrEmpty(passage))
-            {
-                kataruNamespace = NamespaceList().FirstOrDefault((s) => passage.StartsWith(s));
-            }
-        }
-
         protected void OnEnable()
         {
             if (string.IsNullOrEmpty(passage) || passage == Passages.None)
             {
                 Debug.LogError("ERROR: Passage of " + gameObject.name + " is empty");
-            }
-            if (string.IsNullOrEmpty(kataruNamespace))
-            {
-                Debug.LogError("ERROR: Namespace of " + gameObject.name + " is empty");
             }
         }
 #endif

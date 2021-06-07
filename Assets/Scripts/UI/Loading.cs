@@ -20,7 +20,7 @@ namespace JnA.UI
         [SerializeField] Image bg;
         [SerializeField] GameObject art;
 
-        private void Start()
+        private void Awake()
         {
             quitEvent.OnSaveAndQuit += OnSaveAndQuit;
             loadEvent.OnLoad += ShowLoading;

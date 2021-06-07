@@ -11,10 +11,8 @@ namespace Kataru
     class KataruFolder : Handler
     {
 
-        [SerializeField] [Dropdown("NamespaceList")] string kataruNamespace = Namespaces.Global;
         [SerializeField] [Dropdown("CharacterList")] string reference;
-        protected List<string> NamespaceList() => Namespaces.All();
-        protected List<string> CharacterList() => Characters.AllInNamespace(kataruNamespace);
+        protected List<string> CharacterList() => Characters.All();
 
         /// <summary>
         /// Pass character name to the handler attributes.

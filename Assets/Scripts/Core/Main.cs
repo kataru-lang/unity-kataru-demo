@@ -14,11 +14,11 @@ using System.Linq;
 namespace JnA.Core
 {
     /// <summary>
-    // assumed to be present for the entirety of the game
-    // manages things that must be done across game:
-    // - pause screen
-    // - loading screen
-    // - adding inputEvent, pauseEVent listeners
+    // Assumed to be present for the entirety of the game
+    // Manages things that must be done across game:
+    // - Pause screen
+    // - Loading screen
+    // - Adding inputEvent, pauseEvent listeners
     /// </summary>
     public class Main : MainBase
     {
@@ -117,8 +117,7 @@ namespace JnA.Core
                     if (n != Constants.START_SCENE)
                     {
                         Runner.Load();
-                        Runner.RunPassage(Constants.INIT_PASSAGE);
-                        EnablePauseListeners(n != BunnioConstants.BUNNIO_SCENE);
+                        EnablePauseListeners(true);
                     }
                     break;
                 }
@@ -150,18 +149,11 @@ namespace JnA.Core
             }
         }
 
-        void OnPrepLoadScene(SceneData scene, Action onComplete, bool viaMirror)
+        void OnPrepLoadScene(SceneData scene, Action onComplete)
         {
-            if (!viaMirror)
-            {
-                // switch scene map immediately if not travelling via mirror
-                sceneDatabase.OnLoaded += SwitchSceneMapHandler;
-            }
-            if (viaMirror)
-            {
-                loadEvent.OnLoad.Invoke(false, Color.white, onComplete);
-            }
-            else if (scene.showLoad)
+            // switch scene map immediately if not travelling via mirror
+            sceneDatabase.OnLoaded += SwitchSceneMapHandler;
+            if (scene.showLoad)
             {
                 loadEvent.OnLoad.Invoke(scene.showLoadArt, scene.loadColor, onComplete);
             }

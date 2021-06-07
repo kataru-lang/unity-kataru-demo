@@ -106,13 +106,6 @@ namespace Kataru
         }
 
         [CommandHandler]
-        void LoadSceneMirror(string scene)
-        {
-            sceneDB.LoadSceneMirror(scene);
-            sceneDB.OnLoaded += OnSceneLoadedNextLine;
-        }
-
-        [CommandHandler]
         void Wait(double duration)
         {
             StartCoroutine(Runner.DelayedNext((float)duration));

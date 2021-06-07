@@ -16,18 +16,13 @@ namespace JnA.Platformer
     {
         [SerializeField] protected ControllerBase controller;
 
-        [Header("Player-specific")]
-
-        [InfoBox("Can we see all 3 sides?", EInfoBoxType.Normal)]
-        [SerializeField] protected bool canTurn = true;
-
         [SerializeField] InputActionAsset input;
 
         [SerializeField] PlayerEvent playerEvent;
 
         Interactable interact;
 
-        InputAction moveAction, interactAction, attackAction, runAction;
+        InputAction moveAction, interactAction, runAction;
 
         protected virtual void Awake()
         {
@@ -39,7 +34,6 @@ namespace JnA.Platformer
         {
             moveAction = playerMap.FindAction("Move", true);
             runAction = playerMap.FindAction("Run", true);
-            attackAction = playerMap.FindAction("Attack", true);
             interactAction = playerMap.FindAction(Constants.INTERACT_ACTION, true);
         }
 
@@ -87,10 +81,6 @@ namespace JnA.Platformer
 
         void SetPlayerPosition(Vector3 p) => transform.position = p;
 
-        RuntimeAnimatorController GetAnimatorController() => controller.animator.runtimeAnimatorController;
-
-        void SetAnimatorController(RuntimeAnimatorController a) => controller.animator.runtimeAnimatorController = a;
-
         void TriggerAnimation(string trigger) => controller.animator.SetTrigger(trigger);
 
         void SetInteract(Interactable interact)
@@ -114,8 +104,6 @@ namespace JnA.Platformer
         {
             Vector2 _axis = ctx.ReadValue<Vector2>();
 
-            MoveY(_axis.y);
-
             if (ShouldMove(_axis))
                 controller.StartMove(_axis);
         }
@@ -126,13 +114,7 @@ namespace JnA.Platformer
         /// </summary>
         /// <param name="axis"></param>
         /// <returns></returns>
-        protected virtual bool ShouldMove(Vector2 axis) => true;
-
-        /// <summary>
-        /// Called when moving in Y direction.
-        /// </summary>
-        /// <param name="y"></param>
-        protected virtual void MoveY(float y) { }
+        protected virtual bool ShouldMove(Vector2 axis) => axis.x != 0 || axis.y != 0;
 
         protected virtual void EndMove(InputAction.CallbackContext ctx)
         {

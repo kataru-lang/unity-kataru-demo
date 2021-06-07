@@ -46,6 +46,8 @@ namespace JnA.Core
         // button listeners
         public void FadeInListener() => FadeIn();
 
+        public void FadeInListener(float duration) => FadeIn(duration);
+
         public void FadeOutListener() => FadeOut();
 
         // utils

@@ -1,0 +1,134 @@
+---
+namespace: global
+
+state:
+  # Start Quest vars -----
+  deliveredMessage: false
+  goop: 0
+  # Constants -----
+  GOOP_GOAL: 3
+
+characters:
+  Think:
+  Slime:
+
+commands:
+  # Global commands
+  Save:
+
+  Wait:
+    duration: 0.3
+
+  LoadScene:
+    scene: ""
+
+  ShowTutorial:
+    key: ""
+
+  # Math
+  Clamp: { key: "", value: 0, increment: 0, min: 0, max: 100000 }
+
+  # Vfx & camera
+  ChangeVCamData:
+    key: "12,94"
+
+  VCamScreenshake:
+    amplitude: 0.2
+    frequency: 0.4
+
+  VCamStopScreenshake:
+
+  SetLighting:
+    intensity: 0
+
+  FadeInScreen:
+    color: "black"
+    duration: 0.3
+    wait: true
+
+  FadeOutScreen:
+    duration: 0.3
+    wait: true
+
+  # Post processing
+  LerpLUTContribution:
+    target: 0
+    duration: 0.5
+
+  # Global music
+  PlaySfx:
+    clip: ""
+    wait: false
+
+  PlayMusic:
+    clip: ""
+
+  TransitionToSnapshot:
+    snapshot: ""
+    seconds: 0
+
+  # Start character-specific commands -----
+  # Controller commands
+  $character.Walk:
+    xAxis: 1
+    duration: 3
+    wait: true
+    activeOnComplete: true
+
+  $character.WalkTo:
+    name: ""
+    range: 1
+    wait: true
+    activeOnComplete: true
+
+  # Animation commands
+  $character.SetAnimatorTrigger:
+    trigger: ""
+    wait: false
+
+  $character.SetAnimatorInt:
+    param: ""
+    val: 0
+
+  $character.SetAnimatorBool:
+    param: ""
+    val: false
+
+  $character.PlayAnimationState:
+    state: ""
+    layer: 0
+
+  # Vfx commands
+  $character.PlayParticles:
+    wait: false
+
+  # Camera commands
+  $character.VCamFollow:
+    duration: -1
+    wait: false
+
+  $character.StopFollow:
+
+  # Misc gameObject commands
+  $character.SetChildrenActive:
+    isActive: true
+
+  $character.SetChildActive:
+    index: 0
+    isActive: true
+
+  $character.EnableCollider:
+    enabled: true
+
+  $character.EnableSpeaker:
+    enabled: true
+
+  $character.FadeSprite:
+    from: -1
+    to: 1
+    duration: 0.5
+    delay: 0
+    wait: false
+---
+EndDialogue:
+  - return:

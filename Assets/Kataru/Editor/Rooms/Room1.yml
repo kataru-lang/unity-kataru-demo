@@ -1,0 +1,14 @@
+---
+namespace: Room1
+state:
+  $passage.completed: 0
+
+characters:
+  RedSlime:
+
+# Set 'completed' variable for all passages defined in local namespace.
+onExit:
+  set:
+    $passage.completed +: 1
+---
+

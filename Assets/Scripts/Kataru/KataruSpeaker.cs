@@ -11,10 +11,8 @@ namespace Kataru
     {
         [SerializeField] protected DialogueEvent dialogueEvent;
         [SerializeField] Transform target;
-        [SerializeField] [Dropdown("NamespaceList")] protected string characterNamespace = Namespaces.Global;
         [SerializeField] [Dropdown("CharacterList")] string character;
-        protected List<string> NamespaceList() => Namespaces.All();
-        protected List<string> CharacterList() => Characters.AllInNamespace(characterNamespace);
+        protected List<string> CharacterList() => Characters.All();
 
 
         /// Pass character name to the handler attributes.

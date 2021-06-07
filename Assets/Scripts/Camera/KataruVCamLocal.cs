@@ -9,10 +9,8 @@ public class KataruVCamLocal : Handler
 {
     [SerializeField] VCamEvent vCamEvent;
     #region KATARU FIELDS
-    [SerializeField] [Dropdown("NamespaceList")] string kataruNamespace = Namespaces.Global;
     [SerializeField] [Dropdown("CharacterList")] string reference;
-    protected List<string> NamespaceList() => Namespaces.All();
-    protected List<string> CharacterList() => Characters.AllInNamespace(kataruNamespace);
+    protected List<string> CharacterList() => Characters.All();
     protected override string Name
     {
         get => reference.ToString();
@@ -40,14 +38,14 @@ public class KataruVCamLocal : Handler
     {
         if (!wait) Runner.Next();
         yield return new WaitForSeconds((float)duration);
-        RevertFollow();
+        StopFollow();
         if (wait) Runner.Next();
     }
 
     // must call this if called VCamFollow(duration: -1)
     [CommandHandler(local: true)]
-    void RevertFollow()
+    void StopFollow()
     {
-        vCamEvent.RevertFollow();
+        vCamEvent.StopFollow();
     }
 }

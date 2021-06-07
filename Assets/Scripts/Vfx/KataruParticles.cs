@@ -11,10 +11,8 @@ namespace JnA.Vfx
     {
         [SerializeField] ParticleSystem ps;
 
-        [SerializeField] [Dropdown("NamespaceList")] string kataruNamespace = Namespaces.Global;
         [SerializeField] [Dropdown("CharacterList")] string reference;
-        protected List<string> NamespaceList() => Namespaces.All();
-        protected List<string> CharacterList() => Characters.AllInNamespace(kataruNamespace);
+        protected List<string> CharacterList() => Characters.All();
         protected override string Name
         {
             get => reference.ToString();

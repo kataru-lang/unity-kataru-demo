@@ -44,6 +44,7 @@ namespace Kataru
               #endregion
               #region Room2
                  "Room2:BlueSlime",
+                 "Room2:GreenSlime",
               #endregion
             };
             l.AddRange(l2);

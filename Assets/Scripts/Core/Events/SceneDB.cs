@@ -14,16 +14,12 @@ namespace JnA.Core.ScriptableObjects
     [CreateAssetMenu(fileName = "SceneDB", menuName = "ScriptableObjects/Scenes/SceneDB", order = 1)]
     public class SceneDB : ScriptableObject
     {
-        public Action<SceneData, Action, bool> OnPrepLoad;
+        public Action<SceneData, Action> OnPrepLoad;
         public event Action<string, SceneData> OnLoaded;
         public Action OnUnloaded;
 
-        public Action<Action> OnSceneMirrorLoad;
-
         private string currentScene;
-
         [SerializeField, DrawKeyAsProperty] SceneDictionary sceneDictionary;
-
         const bool DEFAULT_SAVE_CURRENT_SCENE = false;
 
         public void Prepare()
@@ -31,17 +27,18 @@ namespace JnA.Core.ScriptableObjects
             currentScene = null;
         }
 
-        // Load mirror scene - play player's stepping into mirror animation and post processing wave effect
-        public void LoadSceneMirror(string sceneKey)
-        {
-            OnSceneMirrorLoad?.Invoke(() => LoadScene(sceneKey, true));
-        }
-
         //Load scene
-        public void LoadScene(string sceneKey, bool viaMirror = false)
+        public void LoadScene(string sceneKey)
         {
             if (currentScene == sceneKey)
                 return;
+
+#if UNITY_EDITOR
+            if (!sceneDictionary.ContainsKey(new SceneString(sceneKey)))
+            {
+                Debug.LogError($"Scene {sceneKey} is not in sceneDB. Please add it to sceneDB.");
+            }
+#endif
 
             SceneData scene = sceneDictionary[new SceneString(sceneKey)];
             OnPrepLoad.Invoke(scene, () =>
@@ -56,7 +53,7 @@ namespace JnA.Core.ScriptableObjects
               Debug.Log($"Loaded scene '{sceneKey}'");
               OnLoaded?.Invoke(oldScene, scene);
           };
-            }, viaMirror);
+            });
         }
 
         public void ReloadScene(string sceneKey)
@@ -77,7 +74,7 @@ namespace JnA.Core.ScriptableObjects
                 throw new KeyNotFoundException($"No SceneData found for scene named '{sceneKey}'. Add it to SceneDB.");
             }
             currentScene = sceneKey;
-            OnPrepLoad?.Invoke(scene, () => OnLoaded?.Invoke(null, scene), false);
+            OnPrepLoad?.Invoke(scene, () => OnLoaded?.Invoke(null, scene));
         }
 #endif
 

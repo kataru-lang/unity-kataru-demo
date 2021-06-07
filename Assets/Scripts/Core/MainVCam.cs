@@ -30,7 +30,7 @@ namespace JnA.Core
             vCamEvent.ChangeData += ChangeData;
             vCamEvent.RevertData += RevertData;
             vCamEvent.Follow += Follow;
-            vCamEvent.RevertFollow += RevertFollow;
+            vCamEvent.StopFollow += StopFollow;
             vCamEvent.Screenshake += Screenshake;
             vCamEvent.StopScreenshake += StopScreenshake;
             vCamEvent.ChangeConfiner += ChangeConfiner;
@@ -82,7 +82,7 @@ namespace JnA.Core
             pastFollows.Push(transform);
         }
 
-        void RevertFollow()
+        void StopFollow()
         {
             if (pastFollows.Count >= 2)
                 pastFollows.Pop();

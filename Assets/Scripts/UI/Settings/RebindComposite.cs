@@ -33,7 +33,8 @@ namespace JnA.UI.Settings
 
         bool compare(InputBinding x, InputControl control)
         {
-            return x.groups.Contains(control.device.displayName) && x.isPartOfComposite && x.name == partBinding;
+            Debug.Log($"groups: '{x.groups}' contains device.displayName: '{control.device.displayName}' && {x.isPartOfComposite} && {x.name} == {partBinding}");
+            return !x.isComposite && x.groups.Contains(control.device.displayName) && x.isPartOfComposite && x.name == partBinding;
         }
     }
 }

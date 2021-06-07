@@ -68,7 +68,6 @@ namespace JnA.UI
         {
             Runner.Load();
             menuCanvas.group.FadeOut(0.2f);
-            dialogueEvent.RunPassage(Constants.INIT_PASSAGE);
             sceneDB.LoadScene(startScene);
             pauseEvent.EnablePause(true);
         }

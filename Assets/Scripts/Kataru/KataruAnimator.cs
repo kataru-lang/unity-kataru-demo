@@ -29,6 +29,24 @@ namespace Kataru
         }
 #endif
 
+        [Kataru.CommandHandler(local: true)]
+        protected virtual void SetAnimatorInt(string param, double val)
+        {
+            animator.SetInteger(param, (int)val);
+        }
+
+        [Kataru.CommandHandler(local: true)]
+        protected virtual void SetAnimatorBool(string param, bool val)
+        {
+            animator.SetBool(param, val);
+        }
+
+        [Kataru.CommandHandler(local: true)]
+        protected virtual void PlayAnimationState(string state, double layer)
+        {
+            animator.Play(state, (int)layer);
+        }
+
         [Kataru.CommandHandler(local: true, autoNext: false)]
         protected virtual void SetAnimatorTrigger(string trigger, bool wait)
         {
@@ -50,18 +68,6 @@ namespace Kataru
             yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length
             + animator.GetCurrentAnimatorStateInfo(0).normalizedTime);
             Runner.Next();
-        }
-
-        [Kataru.CommandHandler(local: true)]
-        protected virtual void SetAnimatorInt(string param, double val)
-        {
-            animator.SetInteger(param, (int)val);
-        }
-
-        [Kataru.CommandHandler(local: true)]
-        protected virtual void SetAnimatorBool(string param, bool val)
-        {
-            animator.SetBool(param, val);
         }
     }
 }
