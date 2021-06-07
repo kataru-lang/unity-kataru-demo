@@ -13,24 +13,16 @@ namespace JnA.Utils
             {
                 case "white":
                     return Color.white;
+                case "blue":
+                    return Color.blue;
                 default:
                     return Color.black;
             }
         }
 
-        public static bool OutOfBounds(Vector2 pointerPos)
-        {
-            if (pointerPos.x < 0 || pointerPos.y < 0 || pointerPos.x > Screen.width || pointerPos.y > Screen.height) return true;
-            return false;
-        }
         public static bool Approximately(float a, float b, float threshold = 0.01f)
         {
             return ((a - b) < 0 ? ((a - b) * -1) : (a - b)) <= threshold;
-        }
-
-        public static bool Approximately(Vector2 a, Vector2 b, float threshold = 0.01f)
-        {
-            return Approximately(a.x, b.x, threshold) && Approximately(a.y, b.y, threshold);
         }
 
         public static Color ChangeColorA(Color c, float a)
@@ -38,18 +30,6 @@ namespace JnA.Utils
             c.a = a;
             return c;
         }
-
-        public static Vector3 TopColliderPosition(Collider2D collider) => new Vector3(
-            collider.gameObject.transform.position.x + collider.offset.x,
-            collider.gameObject.transform.position.y + collider.offset.y + collider.bounds.extents.y
-             + 0.5f,
-            0);
-
-        public static Vector3 BottomColliderPosition(Collider2D collider) => new Vector3(
-        collider.gameObject.transform.position.x + collider.offset.x,
-        collider.gameObject.transform.position.y + collider.offset.y - collider.bounds.extents.y
-         + 1f,
-        0);
 
         public static Camera GetCamera(Cameras type)
         {
@@ -61,18 +41,6 @@ namespace JnA.Utils
                 default:
                     return Camera.main;
             }
-        }
-
-        public static bool IsPlayerHurtbox(Collider2D other)
-        {
-            return other.transform.parent != null &&
-                                        other.transform.parent.gameObject.CompareTag(Constants.PLAYER_TAG);
-        }
-
-        public static bool IsHurtbox(Collider2D other, LayerMask layerMask)
-        {
-            return other.transform.parent != null &&
-                                        ((layerMask.value & (1 << other.transform.parent.gameObject.layer)) > 0);
         }
 
         public static List<string> PublicStaticStrings(Type type)

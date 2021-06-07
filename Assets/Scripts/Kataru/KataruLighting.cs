@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
-
+using DG.Tweening;
 namespace Kataru
 {
     /// <summary>
@@ -17,6 +17,17 @@ namespace Kataru
             foreach (var light2d in light2ds)
             {
                 light2d.intensity = (float)intensity;
+            }
+        }
+
+        [CommandHandler]
+        void LerpLighting(double intensity, double duration)
+        {
+            float intensityF = (float)intensity;
+            float durationF = (float)duration;
+            foreach (var light2d in light2ds)
+            {
+                DOTween.To(() => light2d.intensity, (x) => light2d.intensity = x, intensityF, durationF);
             }
         }
     }

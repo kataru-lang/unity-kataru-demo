@@ -12,4 +12,22 @@ onExit:
   set:
     $passage.completed +: 1
 ---
-
+BlueSlimeTalk:
+  - if $goop < $GOOP_GOAL:
+      - BlueSlime.PlayAnimationState: [wow]
+      - if $BlueSlimeTalk.completed == 0:
+          - BlueSlime: Can you get me some goop?
+          - I need $GOOP_GOAL goop.
+        else:
+          - BlueSlime: You need {$GOOP_GOAL-$goop} more goop.
+      - BlueSlime.PlayAnimationState: [normal]
+    else:
+      - BlueSlime.PlayAnimationState: [happy]
+      - if $BlueSlimeTalk.completed == 0:
+          - BlueSlime: Hey, I don't know you, but can I have your goop?
+        else:
+          - BlueSlime: You're back! And you have goop!
+          - Can I have it?
+      - choices:
+          Sure...: GiveGoop
+          No, it's mine: NoGiveGoop

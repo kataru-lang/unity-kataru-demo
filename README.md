@@ -44,3 +44,5 @@ Note that the Kataru.Constants class is used in collaboration with NaughtyAttrib
 
 
 Sometimes in a CommandHandler, a character is referred to as a 'reference.' This indicates that the character is mainly a character to deliver commands, not dialogue lines.
+
+For more info on working with Unity and Kataru, see [the docs](http://kataru-lang.github.io/).

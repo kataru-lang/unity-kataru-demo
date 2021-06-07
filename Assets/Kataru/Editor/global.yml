@@ -3,7 +3,6 @@ namespace: global
 
 state:
   # Start Quest vars -----
-  deliveredMessage: false
   goop: 0
   # Constants -----
   GOOP_GOAL: 3
@@ -40,6 +39,10 @@ commands:
 
   SetLighting:
     intensity: 0
+
+  LerpLighting:
+    intensity: 0
+    duration: 0.3
 
   FadeInScreen:
     color: "black"

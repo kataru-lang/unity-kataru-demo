@@ -1,14 +1,64 @@
 ---
 namespace: Room1
 state:
+  confided: false
   $passage.completed: 0
 
 characters:
   RedSlime:
+  Party:
 
 # Set 'completed' variable for all passages defined in local namespace.
 onExit:
   set:
     $passage.completed +: 1
 ---
+RedSlimeTrigger:
+  - PlaySfx: [Grumble]
+  - RedSlime.PlayAnimationState: [angry]
+  - RedSlime: <size=200%>HEY!
+  - This is <b>MY</b> room!
+  - RedSlime.WalkTo: { name: Slime, range: 4 }
+  - Slime.PlayAnimationState: [wow]
+  - Slime: But look - there's so much room! We can share!
+  - ChangeVCamData: ["16,7"]
+  - RedSlime: I guess...
+  - RedSlime.VCamFollow: []
+  - I've just been a lonely slime for so long, that...
+  - FadeInScreen: [white]
+  - Wait: [0.3]
+  - VCamScreenshake: []
+  - FadeOutScreen: [1]
+  - RedSlime.PlayAnimationState: [wow]
+  - <size=150%>I've forgotten what it's like to see other slimes!
+  - VCamStopScreenshake: []
+  - PlaySfx: [Astonished]
+  - Slime.PlayAnimationState: [happy]
+  - Slime: Let's hang out then!
+  - You don't have to be alone anymore.
+  - RedSlime.PlayAnimationState: [happy]
+  - RedSlime: <i>You'd really do that!?
+  - Slime: Yeah! PARTAY!
+  - Party.SetChildrenActive: []
+  - TransitionToSnapshot: [Track1+2+3]
+  - Wait: [0.5]
+  - LerpLighting: [0.5, 2]
 
+RedSlimeTalk:
+  - if $RedSlimeTalk.completed == 0:
+      - RedSlime: Hey! Back to party?
+      - if $Room2:BlueSlimeTalk.completed != 0 and $goop < $GOOP_GOAL and $confided == false:
+          - Slime.PlayAnimationState: [angry]
+          - Slime: This blue guy demanded I get goop for him...
+          - RedSlime: What a fascinating quest! I can get you some!
+          - RedSlime: Here's 1 goop.
+          - set:
+              $goop +: 1
+              $confided: true
+          - Slime.PlayAnimationState: [happy]
+          - Slime: You're a lifesaver!
+          - RedSlime: And you're a peoplepleaser. Slimepleaser?
+    else:
+      - RedSlime: Hey there! Need more goop?
+      - set: { $goop +: 1 }
+      - Gave ya some! You have $goop goop now.
