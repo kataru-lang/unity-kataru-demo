@@ -23,8 +23,11 @@ namespace JnA.UI.Dialogue
         [SerializeField] TextType textType = TextType.All;
         [InfoBox("Dictionary of character names to voice blips.", EInfoBoxType.Normal)]
         [SerializeField] protected VoiceBlipsDictionary voiceBlipsDict;
+        [InfoBox("If character key not found in voiceBlipsDict, then can resort to defaultBlips.", EInfoBoxType.Normal)]
+        [SerializeField] AudioClip[] defaultBlips;
         [SerializeField] protected AudioEvent audioEvent;
         [SerializeField] protected DialogueEvent dialogueEvent;
+        [Range(0, 0.5f)] [SerializeField] float reducedTimeBetweenBlips = 0.1f;
         protected float nextBlipTime;
 
         string currCharacter = string.Empty;
@@ -50,13 +53,18 @@ namespace JnA.UI.Dialogue
         // listener to textAnimatorPlayer OnCharacterVisible
         public void OnChar(char c)
         {
-            AudioClips voiceBlips;
-            if (!char.IsLetterOrDigit(c) || !voiceBlipsDict.TryGetValue(currCharacter, out voiceBlips)) return;
+            AudioClip[] voiceBlips;
+
+            if (voiceBlipsDict.TryGetValue(currCharacter, out AudioClips blipsContainer)) voiceBlips = blipsContainer.clips;
+            else voiceBlips = defaultBlips;
+
+            if (!char.IsLetterOrDigit(c) || voiceBlips == null) return;
+
             if (nextBlipTime < Time.realtimeSinceStartup)
             {
-                AudioClip random = voiceBlips.clips[Random.Range(0, voiceBlips.clips.Length)];
+                AudioClip random = voiceBlips[Random.Range(0, voiceBlips.Length)];
                 audioEvent.PlayOneShot(random);
-                nextBlipTime = Time.realtimeSinceStartup + random.length;
+                nextBlipTime = Time.realtimeSinceStartup + random.length - reducedTimeBetweenBlips;
             }
         }
     }

@@ -9,8 +9,10 @@ public class KataruVCamLocal : Handler
 {
     [SerializeField] VCamEvent vCamEvent;
     #region KATARU FIELDS
-    [SerializeField] [Dropdown("CharacterList")] string reference;
-    protected List<string> CharacterList() => Characters.All();
+    [SerializeField] [Dropdown("NamespaceList")] string kataruNamespace = Namespaces.Global;
+    [SerializeField] [Dropdown("CharacterList")] string reference = Characters.None;
+    protected List<string> NamespaceList() => Namespaces.All();
+    protected List<string> CharacterList() => Characters.AllInNamespace(kataruNamespace);
     protected override string Name
     {
         get => reference.ToString();
@@ -22,7 +24,7 @@ public class KataruVCamLocal : Handler
     /// If duration is -1, then revert vcam follow manually
     /// </summary>
     /// <param name="duration"></param>
-    [CommandHandler(local: true, autoNext: false)]
+    [CommandHandler(character: true, autoNext: false)]
     void VCamFollow(double duration, bool wait)
     {
         vCamEvent.Follow(transform);
@@ -43,7 +45,7 @@ public class KataruVCamLocal : Handler
     }
 
     // must call this if called VCamFollow(duration: -1)
-    [CommandHandler(local: true)]
+    [CommandHandler(character: true)]
     void StopFollow()
     {
         vCamEvent.StopFollow();

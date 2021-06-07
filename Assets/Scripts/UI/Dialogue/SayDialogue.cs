@@ -17,6 +17,7 @@ namespace JnA.UI.Dialogue
 
         [Space(20)]
         [SerializeField] Core.ScriptableObjects.VCamEvent vCamEvent;
+        [SerializeField] UnityEvent<string> OnSwitchCharacter;
 
         #region PRIVATE
         string lastCharacter = string.Empty;
@@ -89,9 +90,14 @@ namespace JnA.UI.Dialogue
                 if (!string.IsNullOrEmpty(lastCharacter))
                 {
                     Hide();
-                    yield return new WaitForSeconds(0.3f);
+                    // wait a frame to ensure transition to next animation state
+                    yield return null;
+                    // wait until dialogue hiding animation is finished
+                    yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length
+       + animator.GetCurrentAnimatorStateInfo(0).normalizedTime);
                 }
                 lastCharacter = dialogue.name;
+                OnSwitchCharacter?.Invoke(lastCharacter);
             }
         }
 

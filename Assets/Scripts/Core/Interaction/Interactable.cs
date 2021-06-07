@@ -32,7 +32,7 @@ namespace JnA.Core.Interaction
 
             if (audioEvent != null && sfxClip != null) audioEvent.PlayOneShot(sfxClip);
             OnInteract.Invoke();
-            Hide();
+
 
             if (useOnce)
             {

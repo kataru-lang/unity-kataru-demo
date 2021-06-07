@@ -39,8 +39,11 @@ namespace Kataru
             var l2 = new List<string>
             {
                 "Slime",
+                "GlobalLight",
               #region Room1
                 "Room1:RedSlime",
+                "Room1:Party",
+                "Room1:PartyLight",
               #endregion
               #region Room2
                  "Room2:BlueSlime",
@@ -57,11 +60,14 @@ namespace Kataru
         public const string None = "None";
 
         public static List<string> All() => new List<string> {
+          None,
           #region Room1
-            "Child:Start",
+            "Room1:RedSlimeTrigger",
+            "Room1:RedSlimeTalk",
           #endregion
           #region Room2
-            "Teen:BedroomDoor",
+            "Room2:BlueSlimeTalk",
+            "Room2:GreenObserve",
           #endregion
         };
 

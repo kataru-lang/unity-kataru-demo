@@ -11,8 +11,10 @@ namespace Kataru
     public class KataruAnimator : Handler
     {
         [SerializeField] protected Animator animator;
-        [SerializeField] [Dropdown("CharacterList")] string reference;
-        protected List<string> CharacterList() => Characters.All();
+        [SerializeField] [Dropdown("NamespaceList")] string kataruNamespace = Namespaces.Global;
+        [SerializeField] [Dropdown("CharacterList")] string reference = Characters.None;
+        protected List<string> NamespaceList() => Namespaces.All();
+        protected List<string> CharacterList() => Characters.AllInNamespace(kataruNamespace);
         protected override string Name
         {
             get => reference.ToString();
@@ -29,25 +31,25 @@ namespace Kataru
         }
 #endif
 
-        [Kataru.CommandHandler(local: true)]
+        [Kataru.CommandHandler(character: true)]
         protected virtual void SetAnimatorInt(string param, double val)
         {
             animator.SetInteger(param, (int)val);
         }
 
-        [Kataru.CommandHandler(local: true)]
+        [Kataru.CommandHandler(character: true)]
         protected virtual void SetAnimatorBool(string param, bool val)
         {
             animator.SetBool(param, val);
         }
 
-        [Kataru.CommandHandler(local: true)]
+        [Kataru.CommandHandler(character: true)]
         protected virtual void PlayAnimationState(string state, double layer)
         {
             animator.Play(state, (int)layer);
         }
 
-        [Kataru.CommandHandler(local: true, autoNext: false)]
+        [Kataru.CommandHandler(character: true, autoNext: false)]
         protected virtual void SetAnimatorTrigger(string trigger, bool wait)
         {
             animator.SetTrigger(trigger);

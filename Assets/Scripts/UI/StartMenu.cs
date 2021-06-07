@@ -12,8 +12,6 @@ namespace JnA.UI
 {
     public class StartMenu : MonoBehaviour
     {
-        string TW_KEY = "TW";
-
         [Header("Start Game")]
         [SerializeField] DialogueEvent dialogueEvent;
         [Scene] [SerializeField] string startScene;

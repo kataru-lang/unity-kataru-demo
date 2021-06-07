@@ -1,3 +1,4 @@
+using System.Collections;
 using Cinemachine;
 using JnA.Core.ScriptableObjects;
 using RotaryHeart.Lib.SerializableDictionary;
@@ -20,9 +21,17 @@ namespace Kataru
         }
 
         [CommandHandler]
-        void VCamScreenshake(double amplitude, double frequency)
+        void VCamScreenshake(double amplitude, double frequency, double duration)
         {
             cameraEvent.Screenshake((float)amplitude, (float)frequency);
+            if (duration != -1)
+                StartCoroutine(WaitStopScreenshake((float)duration));
+        }
+
+        IEnumerator WaitStopScreenshake(float duration)
+        {
+            yield return new WaitForSeconds(duration);
+            VCamStopScreenshake();
         }
 
         [CommandHandler]

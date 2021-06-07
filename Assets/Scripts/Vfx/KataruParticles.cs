@@ -11,21 +11,21 @@ namespace JnA.Vfx
     {
         [SerializeField] ParticleSystem ps;
 
-        [SerializeField] [Dropdown("CharacterList")] string reference;
-        protected List<string> CharacterList() => Characters.All();
+        [SerializeField] [Dropdown("NamespaceList")] string kataruNamespace = Namespaces.Global;
+        [SerializeField] [Dropdown("CharacterList")] string reference = Characters.None;
+        protected List<string> NamespaceList() => Namespaces.All();
+        protected List<string> CharacterList() => Characters.AllInNamespace(kataruNamespace);
         protected override string Name
         {
             get => reference.ToString();
         }
-
-        bool waitNext = false;
 
         private void OnValidate()
         {
             ps = GetComponent<ParticleSystem>();
         }
 
-        [Kataru.CommandHandler(local: true, autoNext: false)]
+        [Kataru.CommandHandler(character: true, autoNext: false)]
         protected virtual void PlayParticles(bool wait)
         {
             ps.Play();
@@ -35,7 +35,7 @@ namespace JnA.Vfx
             }
             else
             {
-                waitNext = true;
+                Runner.DelayedNext(ps.main.duration);
             }
         }
     }

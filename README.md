@@ -2,8 +2,12 @@
 
 ## About
 Pretty big Unity starter project with Kataru submodule. Tested on 2021.1.9f1. 
+
 Topdown 2D but I imagine it's pretty easy to convert it to another style.
+
 Kataru yml files located in Assets/Kataru/Editor.
+
+For syntax highlighting, download the [Kataru Extension](https://marketplace.visualstudio.com/items?itemName=Kataru.vscode-kataru).
 
 Contains:
 - Scene loading framework

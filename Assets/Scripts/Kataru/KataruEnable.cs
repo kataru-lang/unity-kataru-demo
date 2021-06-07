@@ -12,8 +12,10 @@ namespace Kataru
     /// </summary>
     public class KataruEnable : Handler
     {
-        [SerializeField] [Dropdown("CharacterList")] string reference;
-        protected List<string> CharacterList() => Characters.All();
+        [SerializeField] [Dropdown("NamespaceList")] string kataruNamespace = Namespaces.Global;
+        [SerializeField] [Dropdown("CharacterList")] string reference = Characters.None;
+        protected List<string> NamespaceList() => Namespaces.All();
+        protected List<string> CharacterList() => Characters.AllInNamespace(kataruNamespace);
         protected override string Name
         {
             get => reference.ToString();
@@ -31,13 +33,13 @@ namespace Kataru
 #endif
 
 
-        [Kataru.CommandHandler(local: true)]
+        [Kataru.CommandHandler(character: true)]
         protected virtual void EnableCollider(bool enabled)
         {
             GetComponent<Collider2D>().enabled = enabled;
         }
 
-        [Kataru.CommandHandler(local: true, autoNext: false)]
+        [Kataru.CommandHandler(character: true, autoNext: false)]
         protected virtual void FadeSprite(double from, double to, double duration, double delay, bool wait)
         {
             float d = (float)duration;
@@ -49,7 +51,7 @@ namespace Kataru
             else Runner.DelayedNext(d);
         }
 
-        [Kataru.CommandHandler(local: true)]
+        [Kataru.CommandHandler(character: true)]
         protected virtual void EnableSpeaker(bool enabled)
         {
             GetComponent<KataruSpeaker>().enabled = enabled;

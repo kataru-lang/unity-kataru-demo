@@ -22,7 +22,6 @@ namespace JnA.UI.Dialogue
     public class DialogueVfx : MonoBehaviour
     {
         [SerializeField] protected StyleDictionary styleDict;
-        [SerializeField] protected DialogueEvent dialogueEvent;
 
         [Space(20)]
         [SerializeField] TextMeshProUGUI text;
@@ -30,25 +29,16 @@ namespace JnA.UI.Dialogue
 
         string currCharacter = string.Empty;
 
-        protected void OnEnable()
+        public void TrySetStyle(string character)
         {
-            dialogueEvent.SayLine += TrySetStyle;
-        }
-
-        protected void OnDisable()
-        {
-            dialogueEvent.SayLine -= TrySetStyle;
-        }
-
-        void TrySetStyle(Kataru.Dialogue dialogue, Transform target)
-        {
-            if (dialogue.name != currCharacter)
+            if (character != currCharacter)
             {
-                if (styleDict.TryGetValue(dialogue.name, out DialogueStyle style))
+                if (styleDict.TryGetValue(character, out DialogueStyle style))
                     SetColor(style.textColor, style.bubbleColor);
-                currCharacter = dialogue.name;
+                currCharacter = character;
             }
         }
+
         private void SetColor(Color textColor, Color bubbleColor)
         {
             text.color = textColor;

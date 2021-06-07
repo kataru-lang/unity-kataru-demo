@@ -16,9 +16,10 @@ namespace Kataru
     {
         [SerializeField] DialogueEvent dialogueEvent;
         [SerializeField] Transform dialogueTarget;
-        [SerializeField] [Dropdown("CharacterList")] string character;
-        protected List<string> CharacterList() => Characters.All();
-
+        [SerializeField] [Dropdown("NamespaceList")] string kataruNamespace = Namespaces.Global;
+        [SerializeField] [Dropdown("CharacterList")] string character = Characters.None;
+        protected List<string> NamespaceList() => Namespaces.All();
+        protected List<string> CharacterList() => Characters.AllInNamespace(kataruNamespace);
 
         protected override string Name
         {

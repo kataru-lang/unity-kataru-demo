@@ -5,16 +5,22 @@ using UnityEngine.UI;
 
 namespace Kataru
 {
+    /// <summary>
+    /// Script for handling commands that deal with UI
+    /// Feel free to modify
+    /// </summary>
     public class KataruUI : Handler
     {
-        [SerializeField] [Dropdown("CharacterList")] string reference;
-        protected List<string> CharacterList() => Characters.All();
+        [SerializeField] [Dropdown("NamespaceList")] string kataruNamespace = Namespaces.Global;
+        [SerializeField] [Dropdown("CharacterList")] string reference = Characters.None;
+        protected List<string> NamespaceList() => Namespaces.All();
+        protected List<string> CharacterList() => Characters.AllInNamespace(kataruNamespace);
         protected override string Name
         {
             get => reference.ToString();
         }
 
-        [Kataru.CommandHandler(local: true)]
+        [Kataru.CommandHandler(character: true)]
         protected virtual void ClickButton()
         {
             GetComponent<Button>().onClick?.Invoke();

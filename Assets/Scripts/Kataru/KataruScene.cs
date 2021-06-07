@@ -16,8 +16,10 @@ namespace Kataru
         [SerializeField] protected AudioEvent audioEvent;
 
         #region PASSAGE
-        [SerializeField] [Dropdown("PassagesList")] string passage = Passages.None;
-        protected List<string> PassagesList() => Passages.All();
+        [SerializeField] [Dropdown("NamespaceList")] protected string kataruNamespace = Namespaces.Global;
+        [SerializeField] [Dropdown("PassagesList")] protected string passage = Passages.None;
+        protected List<string> NamespaceList() => Namespaces.All();
+        protected List<string> PassagesList() => Passages.AllInNamespace(kataruNamespace);
         #endregion
         [System.Serializable]
         public class AudioClipDictionary : SerializableDictionaryBase<string, AudioClip> { }

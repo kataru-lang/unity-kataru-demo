@@ -10,10 +10,10 @@ namespace Kataru
     /// </summary>
     class KataruFolder : Handler
     {
-
-        [SerializeField] [Dropdown("CharacterList")] string reference;
-        protected List<string> CharacterList() => Characters.All();
-
+        [SerializeField] [Dropdown("NamespaceList")] string kataruNamespace = Namespaces.Global;
+        [SerializeField] [Dropdown("CharacterList")] string reference = Characters.None;
+        protected List<string> NamespaceList() => Namespaces.All();
+        protected List<string> CharacterList() => Characters.AllInNamespace(kataruNamespace);
         /// <summary>
         /// Pass character name to the handler attributes.
         /// </summary>
@@ -31,13 +31,13 @@ namespace Kataru
         void SetChildrenInactive() => transform.SetChildrenActive(false);
 #endif
 
-        [CommandHandler(local: true)]
+        [CommandHandler(character: true)]
         void SetChildrenActive(bool isActive)
         {
             transform.SetChildrenActive(isActive);
         }
 
-        [CommandHandler(local: true)]
+        [CommandHandler(character: true)]
         void SetChildActive(double index, bool isActive)
         {
             transform.GetChild((int)index).gameObject.SetActive(isActive);

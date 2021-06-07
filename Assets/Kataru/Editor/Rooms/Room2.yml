@@ -1,6 +1,7 @@
 ---
-namespace: Room1
+namespace: Room2
 state:
+  gaveGoop: false
   $passage.completed: 0
 
 characters:
@@ -13,13 +14,18 @@ onExit:
     $passage.completed +: 1
 ---
 BlueSlimeTalk:
+  - PlaySfx: [Grunt]
   - if $goop < $GOOP_GOAL:
       - BlueSlime.PlayAnimationState: [wow]
       - if $BlueSlimeTalk.completed == 0:
           - BlueSlime: Can you get me some goop?
           - I need $GOOP_GOAL goop.
+          - Think: How much are you going to pay me?
+          - choices:
+              I'll do my best: ThanksGoop
+              We'll see: EndDialogue
         else:
-          - BlueSlime: You need {$GOOP_GOAL-$goop} more goop.
+          - BlueSlime: Get me goop. Maybe you can get some offa that red hermit..
       - BlueSlime.PlayAnimationState: [normal]
     else:
       - BlueSlime.PlayAnimationState: [happy]
@@ -31,3 +37,50 @@ BlueSlimeTalk:
       - choices:
           Sure...: GiveGoop
           No, it's mine: NoGiveGoop
+
+ThanksGoop:
+  - Slime: Uh, yeah, I can try.
+  - BlueSlime: Thanks. I don't feel like walking, so you're doing me a great service.
+
+GiveGoop:
+  - Slime: Here.
+  - BlueSlime: Thanks so much!
+  - set: { $goop: 0, $gaveGoop: true }
+  - call: AngryGreen
+
+NoGiveGoop:
+  - GreenSlime.PlayAnimationState: [angry]
+  - BlueSlime: Fine. You know what?
+  - Keep it!
+  - call: AngryGreen
+
+AngryGreen:
+  - GreenSlime.WalkTo: [BlueSlime, 5]
+  - PlaySfx: [Doom]
+  - GreenSlime.PlayAnimationState: [angry]
+  - VCamScreenshake: { amplitude: 0.5, duration: 0.5 }
+  - GreenSlime: <size=150%><b>Blue!!! @$%?#!!
+  - BlueSlime.PlayAnimationState: [wow]
+  - Slime.PlayAnimationState: [wow]
+  - How many times have I told you not to swindle slimes into doing your dirty work?
+  - Wait: [1]
+  - BlueSlime: Erm...
+  - I'm out. Peace.
+  - BlueSlime.FadeSprite: [1, 0]
+  - VCamScreenshake: { amplitude: 0.75, duration: 0.5 }
+  - GreenSlime: <size=200%><b>BLUE!!!!
+  - Wait: [1]
+  - ..I am so sorry for that.
+  - BlueSlime.SetChildrenActive: [false]
+
+GreenObserve:
+  - if $AngryGreen.completed == 0:
+      - Slime: Eheh.. Hi..
+      - GreenSlime.PlayAnimationState: [angry]
+      - Think: Dude looks kinda angry. Better not mess with him.
+      - GreenSlime.PlayAnimationState: [normal]
+    else:
+      - Slime: So... weird night, huh...
+      - GreenSlime.PlayAnimationState: [angry]
+      - Think: Christ, nevermind.
+      - GreenSlime.PlayAnimationState: [normal]

@@ -48,8 +48,9 @@ namespace JnA.UI.Dialogue
         /// <returns></returns>
         protected override void OnShowOptions(Kataru.Choices choices, Transform target)
         {
-            DisableDialogueListener();
-            typewriter.HideText();
+            // DisableDialogueListener();
+            // typewriter.HideText();
+            base.Hide();
         }
 
         protected override bool ShouldHide(LineTag tag) => base.ShouldHide(tag) && tag != LineTag.Choices;

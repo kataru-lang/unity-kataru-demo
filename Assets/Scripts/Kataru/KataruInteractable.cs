@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
+using JnA.Core.Interaction;
 #if UNITY_EDITOR
 using System.Linq;
 #endif
@@ -9,7 +10,6 @@ namespace Kataru
 {
     /// <summary>
     /// An interactable that triggers a passage OnInteract.
-    /// A speaker is any game object with a collider that can send its collider to dialogue objects.
     /// </summary>
     public class KataruInteractable : MonoBehaviour
     {
@@ -17,9 +17,19 @@ namespace Kataru
         [SerializeField] protected DialogueEvent dialogueEvent;
 
         #region PASSAGE
+        [SerializeField] [Dropdown("NamespaceList")] protected string kataruNamespace = Namespaces.Global;
         [SerializeField] [Dropdown("PassagesList")] protected string passage = Passages.None;
-        protected List<string> PassagesList() => Passages.All();
+        protected List<string> NamespaceList() => Namespaces.All();
+        protected List<string> PassagesList() => Passages.AllInNamespace(kataruNamespace);
         #endregion
+
+        /// <summary>
+        /// If there's an Interactable component on this same gameobject;
+        /// there must be a collider2d. In which case we should disable the collider
+        /// when the kataru passage starts, then reenable it when kataru passage ends,
+        /// so that we dont have to walk out then back in to be able to re-interact
+        /// </summary>
+        Collider2D collider2d;
 
 #if UNITY_EDITOR
         protected void OnEnable()
@@ -31,14 +41,38 @@ namespace Kataru
         }
 #endif
 
+        private void Awake()
+        {
+            if (GetComponent<Interactable>() != null)
+            {
+                collider2d = GetComponent<Collider2D>();
+                if (collider2d == null)
+                {
+                    Debug.LogError($"Expected a collider on gameObject '{gameObject.name}'");
+                }
+            }
+        }
+
         public void OnInteract()
         {
             dialogueEvent.RunPassage(passage);
+
+            if (collider2d != null)
+            {
+                collider2d.enabled = false;
+                dialogueEvent.EndDialogue += EnableCollider;
+            }
 
             if (useOnce)
             {
                 Destroy(this);
             }
+        }
+
+        void EnableCollider()
+        {
+            collider2d.enabled = true;
+            dialogueEvent.EndDialogue -= EnableCollider;
         }
 
         // in cases like:

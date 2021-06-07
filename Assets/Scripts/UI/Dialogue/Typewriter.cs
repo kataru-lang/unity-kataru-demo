@@ -12,7 +12,7 @@ namespace JnA.UI.Dialogue
         [SerializeField] UnityEvent<char> OnChar;
         [SerializeField] protected SettingsEvent settingsEvent;
 
-        [SerializeField] float secondsPerChar = 0.01f;
+        [SerializeField] float secondsPerChar = 0.05f;
 
         Tween typeTween;
         float timeScale = 1;
@@ -34,9 +34,16 @@ namespace JnA.UI.Dialogue
         {
             ResetSpeed();
             text.text = line;
+            text.ForceMeshUpdate();
             text.maxVisibleCharacters = 0;
             float duration = text.textInfo.characterCount * secondsPerChar;
-            DOTween.To(() => text.maxVisibleCharacters, (x) => text.maxVisibleCharacters = x, text.textInfo.characterCount, duration);
+            Debug.Log($"Line: '{line}' CharacterCount: '{text.textInfo.characterCount}' duration '{duration}'");
+            typeTween = DOTween.To(() => text.maxVisibleCharacters, (x) =>
+            {
+                Debug.Log("hi update");
+                text.maxVisibleCharacters = x;
+                OnChar?.Invoke(text.text[x]);
+            }, text.textInfo.characterCount, duration);
         }
 
         void SetSpeed(float speed)

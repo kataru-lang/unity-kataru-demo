@@ -7,6 +7,7 @@ state:
 characters:
   RedSlime:
   Party:
+  PartyLight:
 
 # Set 'completed' variable for all passages defined in local namespace.
 onExit:
@@ -14,25 +15,30 @@ onExit:
     $passage.completed +: 1
 ---
 RedSlimeTrigger:
-  - PlaySfx: [Grumble]
   - RedSlime.PlayAnimationState: [angry]
   - RedSlime: <size=200%>HEY!
-  - This is <b>MY</b> room!
   - RedSlime.WalkTo: { name: Slime, range: 4 }
+  - This is <b>MY</b> room!
   - Slime.PlayAnimationState: [wow]
+  - Think: This slime is rather aggressive.
   - Slime: But look - there's so much room! We can share!
   - ChangeVCamData: ["16,7"]
   - RedSlime: I guess...
+  - ChangeVCamData: ["10,6"]
   - RedSlime.VCamFollow: []
+  - LerpLUTContribution: [1, 2]
   - I've just been a lonely slime for so long, that...
   - FadeInScreen: [white]
   - Wait: [0.3]
   - VCamScreenshake: []
   - FadeOutScreen: [1]
   - RedSlime.PlayAnimationState: [wow]
+  - I..
   - <size=150%>I've forgotten what it's like to see other slimes!
   - VCamStopScreenshake: []
-  - PlaySfx: [Astonished]
+  - Wait: [0.5]
+  - LerpLUTContribution: [0, 2]
+  - PlaySfx: [Hmm]
   - Slime.PlayAnimationState: [happy]
   - Slime: Let's hang out then!
   - You don't have to be alone anymore.
@@ -40,16 +46,20 @@ RedSlimeTrigger:
   - RedSlime: <i>You'd really do that!?
   - Slime: Yeah! PARTAY!
   - Party.SetChildrenActive: []
-  - TransitionToSnapshot: [Track1+2+3]
   - Wait: [0.5]
-  - LerpLighting: [0.5, 2]
+  - GlobalLight.LerpLighting: [0.5, 2]
+  - PartyLight.LerpLighting: [1, 2]
+  - RedSlime.WalkTo: { name: Home, range: 2 }
+  - Wait: [0.25]
+  - RedSlime.StopFollow: []
 
 RedSlimeTalk:
-  - if $RedSlimeTalk.completed == 0:
-      - RedSlime: Hey! Back to party?
-      - if $Room2:BlueSlimeTalk.completed != 0 and $goop < $GOOP_GOAL and $confided == false:
+  - Slime.PlayAnimationState: [happy]
+  - if $Room2:BlueSlimeTalk.completed != 0 and $Room2:gaveGoop == false:
+      - if not $confided:
           - Slime.PlayAnimationState: [angry]
           - Slime: This blue guy demanded I get goop for him...
+          - RedSlime.PlayAnimationState: [wow]
           - RedSlime: What a fascinating quest! I can get you some!
           - RedSlime: Here's 1 goop.
           - set:
@@ -57,8 +67,12 @@ RedSlimeTalk:
               $confided: true
           - Slime.PlayAnimationState: [happy]
           - Slime: You're a lifesaver!
-          - RedSlime: And you're a peoplepleaser. Slimepleaser?
+          - RedSlime: You're a peoplepleaser. Slimepleaser?
+        else:
+          - RedSlime: Hey there! Have some goop!
+          - set: { $goop +: 1 }
+          - You have $goop goop now.
     else:
-      - RedSlime: Hey there! Need more goop?
-      - set: { $goop +: 1 }
-      - Gave ya some! You have $goop goop now.
+      - RedSlime: Hey! Back to party?
+      - Slime: YEAH! Party time!
+      - Slime.SetAnimatorTrigger: [dance, true]

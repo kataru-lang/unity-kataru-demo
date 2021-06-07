@@ -10,6 +10,7 @@ state:
 characters:
   Think:
   Slime:
+  GlobalLight:
 
 commands:
   # Global commands
@@ -34,15 +35,9 @@ commands:
   VCamScreenshake:
     amplitude: 0.2
     frequency: 0.4
+    duration: -1 # if duration is negative one, then will screenshake for forever
 
   VCamStopScreenshake:
-
-  SetLighting:
-    intensity: 0
-
-  LerpLighting:
-    intensity: 0
-    duration: 0.3
 
   FadeInScreen:
     color: "black"
@@ -104,6 +99,13 @@ commands:
   # Vfx commands
   $character.PlayParticles:
     wait: false
+
+  $character.SetLighting:
+    intensity: 0
+
+  $character.LerpLighting:
+    intensity: 0
+    duration: 0.3
 
   # Camera commands
   $character.VCamFollow:

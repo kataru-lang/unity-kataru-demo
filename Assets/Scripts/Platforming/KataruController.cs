@@ -10,11 +10,13 @@ namespace Kataru
     [RequireComponent(typeof(ControllerBase))]
     public class KataruController : Handler
     {
-        [SerializeField] protected ControllerBase sideController;
+        [SerializeField] protected ControllerBase controller;
 
         [SerializeField] Transform[] destinations;
-        [SerializeField] [Dropdown("CharacterList")] string character;
-        protected List<string> CharacterList() => Characters.All();
+        [SerializeField] [Dropdown("NamespaceList")] string kataruNamespace = Namespaces.Global;
+        [SerializeField] [Dropdown("CharacterList")] string character = Characters.None;
+        protected List<string> NamespaceList() => Namespaces.All();
+        protected List<string> CharacterList() => Characters.AllInNamespace(kataruNamespace);
         protected override string Name
         {
             get => character.ToString();
@@ -22,7 +24,7 @@ namespace Kataru
 
         private void OnValidate()
         {
-            sideController = GetComponent<ControllerBase>();
+            controller = GetComponent<ControllerBase>();
         }
 
 #if UNITY_EDITOR
@@ -43,10 +45,10 @@ namespace Kataru
         /// <param name="duration"></param>
         /// <param name="wait"></param>
         /// <param name="activeOnComplete"></param>
-        [Kataru.CommandHandler(local: true, autoNext: false)]
+        [Kataru.CommandHandler(character: true, autoNext: false)]
         protected virtual void Walk(double xAxis, double duration, bool wait, bool activeOnComplete)
         {
-            sideController.StartMove(new Vector2((float)xAxis, 0));
+            controller.StartMove(new Vector2((float)xAxis, 0));
 
             if (!wait)
                 Runner.Next();
@@ -61,14 +63,14 @@ namespace Kataru
         /// <param name="name"></param>
         /// <param name="wait"></param>
         /// <param name="activeOnComplete"></param>
-        [Kataru.CommandHandler(local: true, autoNext: false)]
+        [Kataru.CommandHandler(character: true, autoNext: false)]
         protected virtual void WalkTo(string name, double range, bool wait, bool activeOnComplete)
         {
             Transform target = GetDestination(name);
 
             if (TargetReached(target, range)) return;
 
-            sideController.StartMoveTo(target.transform.position);
+            controller.StartMoveTo(target.transform.position);
 
             StartCoroutine(WalkUntilTargetReached(target, range, activeOnComplete, wait));
         }
@@ -117,7 +119,7 @@ namespace Kataru
 
         void EndMove(bool activeOnComplete)
         {
-            sideController.EndMove();
+            controller.EndMove();
             gameObject.SetActive(activeOnComplete);
         }
     }
