@@ -36,10 +36,7 @@ Cool misc features:
 - Wiggly dialogue text
 - Bubble stays on screen when character goes off screen
 - Voice blips
-- Customizable bubble depending on character
-
-
-You can test out Windows, Mac and Linux builds [here](). Note that Kataru is not ready for WebGL yet.   
+- Customizable bubble depending on character 
 
 
 ## Implementation notes
