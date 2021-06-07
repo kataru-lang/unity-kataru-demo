@@ -1,0 +1,3 @@
+[submodule "Assets/Third Party/Kataru"]
+	path = Assets/Third Party/Kataru
+	url = https://github.com/kataru-lang/unity-kataru
