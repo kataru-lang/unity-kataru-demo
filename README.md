@@ -31,7 +31,6 @@ As well as the following third party packages:
 - Rotary Heart Serialized Dictionary Lite
 - SuperUnityBuild
 - DOTween
-- Newtonsoft.Json-for-Unity
 
 Cool misc features:
 - Wiggly dialogue text
