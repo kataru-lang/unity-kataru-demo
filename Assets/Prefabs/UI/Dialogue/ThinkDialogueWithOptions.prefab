@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 861047028217336577}
   - component: {fileID: 639570931397419806}
   - component: {fileID: 5320425881701452123}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,7 +163,7 @@ GameObject:
   - component: {fileID: 680258306303011769}
   - component: {fileID: 639757431943927958}
   - component: {fileID: 639757431943927960}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Choice2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -290,7 +290,7 @@ GameObject:
   - component: {fileID: 639792553069450819}
   - component: {fileID: 639792553069450818}
   - component: {fileID: 639792553069450821}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ThinkOptions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -393,7 +393,7 @@ GameObject:
   - component: {fileID: 684030272804694439}
   - component: {fileID: 640277374546744574}
   - component: {fileID: 640277374546744576}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Choice1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -519,7 +519,7 @@ GameObject:
   - component: {fileID: 860732560008822507}
   - component: {fileID: 640353975710431120}
   - component: {fileID: 4892850267330319953}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -669,7 +669,7 @@ GameObject:
   - component: {fileID: 4313666606537463256}
   - component: {fileID: 7667720837372197905}
   - component: {fileID: 6321863153549331406}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -833,7 +833,7 @@ GameObject:
   - component: {fileID: 6092357915970488323}
   - component: {fileID: 8517216802675582324}
   - component: {fileID: 8751987297171223790}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -908,7 +908,7 @@ GameObject:
   - component: {fileID: 4400745267196745542}
   - component: {fileID: 3901188265131558864}
   - component: {fileID: 6924819809996704207}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: thinkPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -990,7 +990,7 @@ GameObject:
   - component: {fileID: 1118958864998908180}
   - component: {fileID: 5705279776778645763}
   - component: {fileID: 515461156}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ThinkDialogueWithOptions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1076,8 +1076,10 @@ MonoBehaviour:
     _keyValues: []
     _keys: []
     _values: []
+  defaultBlips: []
   audioEvent: {fileID: 11400000, guid: b07b84be30c554574912aa0a546ecca0, type: 2}
   dialogueEvent: {fileID: 11400000, guid: 3d90a6de5852d2142907903226054b7a, type: 2}
+  reducedTimeBetweenBlips: 0.1
 --- !u!223 &8535450074508860825
 Canvas:
   m_ObjectHideFlags: 0
@@ -1179,7 +1181,7 @@ GameObject:
   - component: {fileID: 3408631076085461878}
   - component: {fileID: 619103359821750807}
   - component: {fileID: 460975876}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1309,7 +1311,7 @@ GameObject:
   - component: {fileID: 5667777194871176831}
   - component: {fileID: 6359283529691362552}
   - component: {fileID: 1441970289246045295}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}

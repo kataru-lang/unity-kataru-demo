@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4313666606537463256}
   - component: {fileID: 7667720837372197905}
   - component: {fileID: 6321863153549331406}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_text: text
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 562433e6e8c5242d78e8df28956a0a3e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -176,7 +176,7 @@ GameObject:
   - component: {fileID: 4400745267196745542}
   - component: {fileID: 3901188265131558864}
   - component: {fileID: 6924819809996704207}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: thinkPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,7 +201,7 @@ RectTransform:
   m_AnchorMin: {x: 0.2, y: 0}
   m_AnchorMax: {x: 0.8, y: 0.25}
   m_AnchoredPosition: {x: 0, y: 20}
-  m_SizeDelta: {x: 0, y: -20}
+  m_SizeDelta: {x: -197.724, y: -62.909}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &3901188265131558864
 CanvasRenderer:
@@ -257,7 +257,7 @@ GameObject:
   - component: {fileID: 1118958864998908180}
   - component: {fileID: 5705279776778645763}
   - component: {fileID: 515461156}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ThinkDialogue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -368,7 +368,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: -1450526659
+  m_SortingLayerID: 1165609545
   m_SortingOrder: -100
   m_TargetDisplay: 0
 --- !u!114 &8288276341404585586
@@ -451,7 +451,7 @@ GameObject:
   - component: {fileID: 3408631076085461878}
   - component: {fileID: 619103359821750807}
   - component: {fileID: 460975876}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}

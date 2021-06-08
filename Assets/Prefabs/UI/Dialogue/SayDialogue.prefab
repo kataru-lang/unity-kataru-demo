@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7978175760807777397}
   - component: {fileID: 7978175760807777395}
   - component: {fileID: 7978175760807777396}
-  m_Layer: 18
+  m_Layer: 0
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,7 +144,7 @@ GameObject:
   - component: {fileID: 7978175760990068125}
   - component: {fileID: 7978175760990068126}
   - component: {fileID: 7978175760990068124}
-  m_Layer: 18
+  m_Layer: 0
   m_Name: Tail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -242,7 +242,7 @@ GameObject:
   - component: {fileID: 3811417659672121315}
   - component: {fileID: 7978175761486139933}
   - component: {fileID: 7978175761486139943}
-  m_Layer: 18
+  m_Layer: 0
   m_Name: SayDialogue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -345,14 +345,14 @@ MonoBehaviour:
     isExpanded: 1
     _keyValues:
     - Slime
-    - RedSlime
-    - BlueSlime
-    - GreenSlime
+    - Room1:RedSlime
+    - Room2:BlueSlime
+    - Room2:GreenSlime
     _keys:
     - Slime
-    - RedSlime
-    - BlueSlime
-    - GreenSlime
+    - Room1:RedSlime
+    - Room2:BlueSlime
+    - Room2:GreenSlime
     _values:
     - bubbleColor: {r: 1, g: 1, b: 1, a: 1}
       textColor: {r: 0.20754719, g: 0.15174441, b: 0.15174441, a: 1}
@@ -430,7 +430,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: -1450526659
+  m_SortingLayerID: 1165609545
   m_SortingOrder: -700
   m_TargetDisplay: 0
 --- !u!95 &7978175761486139943
@@ -465,7 +465,7 @@ GameObject:
   - component: {fileID: 5557406647122090921}
   - component: {fileID: 7978175762377498611}
   - component: {fileID: 7978175762377498622}
-  m_Layer: 18
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -552,7 +552,7 @@ MonoBehaviour:
   m_text: text
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
