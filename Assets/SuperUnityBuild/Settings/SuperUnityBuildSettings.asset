@@ -99,23 +99,23 @@ MonoBehaviour:
     buildPath: $RELEASE_TYPE/$PLATFORM/
     openFolderPostBuild: 1
   _productParameters:
-    buildCounter: 0
-    buildVersion: 
+    buildCounter: 2
+    buildVersion: 1.0.0.2
     versionTemplate: 1.0.0.$BUILD
     autoGenerate: 1
     syncWithPlayerSettings: 0
   _releaseTypeList:
     releaseTypes:
     - typeName: Basic Release
-      bundleIdentifier: com.DefaultCompany.KataruAdvanced
+      bundleIdentifier: com.DefaultCompany.KataruDemo
       companyName: DefaultCompany
-      productName: KataruAdvanced
+      productName: KataruDemo
       buildOptions: 0
       customDefines: 
       sceneList:
         enabledScenes:
         - fileGUID: 39a38ca1e001847439e357b199e87f57
-        - fileGUID: 1681fd3274eb54d9ba7404c7e49a6a97
+        - fileGUID: 6568c80f4c3654ac18084297582a2dfa
         - fileGUID: 2cda990e2423bbf4892e6590ba056729
   _platformList:
     platforms:

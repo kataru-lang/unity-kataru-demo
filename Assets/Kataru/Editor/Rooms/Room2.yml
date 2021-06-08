@@ -25,7 +25,8 @@ BlueSlimeTalk:
               I'll do my best: ThanksGoop
               We'll see: EndDialogue
         else:
-          - BlueSlime: Get me goop. Maybe you can get some offa that red hermit..
+          - BlueSlime: You need {$GOOP_GOAL - $goop} more goop.
+          - Maybe you can get some offa that red hermit..
       - BlueSlime.PlayAnimationState: [normal]
     else:
       - BlueSlime.PlayAnimationState: [happy]

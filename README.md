@@ -1,5 +1,6 @@
 # Unity Kataru Demo
-
+![Screenshot 1](Screenshot1.png)
+![Screenshot 2](Screenshot2.png)
 ## About
 Pretty big Unity starter project with Kataru submodule. Tested on 2021.1.9f1. 
 
@@ -39,7 +40,7 @@ Cool misc features:
 - Customizable bubble depending on character
 
 
-You can test out Windows, Mac and Linux builds [here](). Note that Kataru is not ready for WebGL yet.   
+You can test out Windows, Mac and Linux builds [here](https://zephyo1.itch.io/unity-kataru-demo). Note that Kataru is not ready for WebGL yet.   
 
 
 ## Implementation notes
