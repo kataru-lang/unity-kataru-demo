@@ -34,6 +34,7 @@ RedSlimeTrigger:
   - FadeOutScreen: [1]
   - RedSlime.PlayAnimationState: [wow]
   - I..
+  - Wait: [0.3]
   - <size=150%>I've forgotten what it's like to see other slimes!
   - VCamStopScreenshake: []
   - Wait: [0.5]
@@ -52,6 +53,7 @@ RedSlimeTrigger:
   - RedSlime.WalkTo: { name: Home, range: 2 }
   - Wait: [0.25]
   - RedSlime.StopFollow: []
+  - Save: []
 
 RedSlimeTalk:
   - Slime.PlayAnimationState: [happy]
@@ -76,3 +78,4 @@ RedSlimeTalk:
       - RedSlime: Hey! Back to party?
       - Slime: YEAH! Party time!
       - Slime.SetAnimatorTrigger: [dance, true]
+  - Save: []

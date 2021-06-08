@@ -37,10 +37,8 @@ namespace JnA.UI.Dialogue
             text.ForceMeshUpdate();
             text.maxVisibleCharacters = 0;
             float duration = text.textInfo.characterCount * secondsPerChar;
-            Debug.Log($"Line: '{line}' CharacterCount: '{text.textInfo.characterCount}' duration '{duration}'");
             typeTween = DOTween.To(() => text.maxVisibleCharacters, (x) =>
             {
-                Debug.Log("hi update");
                 text.maxVisibleCharacters = x;
                 OnChar?.Invoke(text.text[x]);
             }, text.textInfo.characterCount, duration);

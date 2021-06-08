@@ -6,11 +6,9 @@ namespace JnA.Platformer
     public class ControllerDataBase : ScriptableObject
     {
         [Header("Walk Params")]
-        public float walkForce = 40;
-        public float maxWalkVelocity = 6;
+        public float walkVelocity = 10;
 
         [Header("Run Params")]
-        public float runForce = 60;
-        public float maxRunVelocity = 10;
+        public float runVelocity = 20;
     }
 }

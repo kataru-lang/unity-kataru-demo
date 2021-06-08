@@ -12,7 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a3c2e8977d354ae78e44c1f78f0b8b8, type: 3}
   m_Name: Slime
   m_EditorClassIdentifier: 
-  walkForce: 40
-  maxWalkVelocity: 6
-  runForce: 60
-  maxRunVelocity: 10
+  walkVelocity: 8
+  runVelocity: 16

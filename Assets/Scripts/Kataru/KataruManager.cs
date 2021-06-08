@@ -64,7 +64,7 @@ namespace Kataru
                 return;
             }
 
-            inputEvent.SwitchActionMap(Constants.UI_MAP);
+            inputEvent.SwitchActionMap(Constants.UI_MAP, false);
             Runner.RunPassage(passage.ToString());
         }
 

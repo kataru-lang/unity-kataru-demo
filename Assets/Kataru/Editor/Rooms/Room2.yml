@@ -73,6 +73,7 @@ AngryGreen:
   - Wait: [1]
   - ..I am so sorry for that.
   - BlueSlime.SetChildrenActive: [false]
+  - Save: []
 
 GreenObserve:
   - if $AngryGreen.completed == 0:

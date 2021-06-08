@@ -67,7 +67,7 @@ namespace JnA.Core
             paused = !paused;
             if (paused)
             {
-                inputEvent.SwitchActionMap(Constants.UI_MAP);
+                inputEvent.SwitchActionMap(Constants.UI_MAP, true);
                 ShowPause();
                 Time.timeScale = 0;
             }

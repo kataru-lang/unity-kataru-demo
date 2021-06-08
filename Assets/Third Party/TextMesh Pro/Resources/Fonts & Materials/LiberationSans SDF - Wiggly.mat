@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Wiggly SDF
+  m_Name: LiberationSans SDF - Wiggly
   m_Shader: {fileID: 4800000, guid: c7a60ca88138d4cfb91ac12cd1e8eadf, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 1

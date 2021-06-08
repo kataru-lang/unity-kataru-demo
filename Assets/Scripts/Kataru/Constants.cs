@@ -61,6 +61,7 @@ namespace Kataru
 
         public static List<string> All() => new List<string> {
           None,
+          "Start",
           #region Room1
             "Room1:RedSlimeTrigger",
             "Room1:RedSlimeTalk",

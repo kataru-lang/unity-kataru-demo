@@ -8,6 +8,8 @@ using JnA.Utils;
 using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
+using JnA.Core.ScriptableObjects;
+using System.Collections;
 
 namespace JnA.UI
 {
@@ -47,7 +49,7 @@ namespace JnA.UI
     {
         private const string SAVE_PATH = "tutorial.json";
         [SerializeField] TutorialDictionary tutorials;
-        [SerializeField] InputActionAsset input;
+        [SerializeField] InputEvent inputEvent;
         [SerializeField] Image image;
 
         InputAction currentAction;
@@ -79,9 +81,10 @@ namespace JnA.UI
             }
         }
 
-        [CommandHandler]
-        void ShowTutorial(string key)
+        [CommandHandler(autoNext: false)]
+        void ShowTutorial(string key, bool wait)
         {
+            bool showedTutorial = false;
             if (tutorials.TryGetValue(key, out Tutorial tutorial))
             {
                 if (!tutorial.completed)
@@ -89,10 +92,30 @@ namespace JnA.UI
                     image.sprite = tutorial.guide;
                     image.SetNativeSize();
                     image.DOFade(1, 0.3f);
-                    currentAction = input.FindActionMap(Constants.PLAYER_MAP, true).FindAction(key, true);
+                    currentAction = inputEvent.input.FindActionMap(Constants.PLAYER_MAP, true).FindAction(key, true);
                     currentAction.performed += EndTutorial;
+                    showedTutorial = true;
                 }
             }
+            if (wait && showedTutorial)
+            {
+                inputEvent.RevertToSceneMap();
+                currentAction.performed += RunnerNextListener;
+            }
+            else Runner.Next();
+        }
+
+        void RunnerNextListener(InputAction.CallbackContext ctx)
+        {
+            currentAction.performed -= RunnerNextListener;
+            StartCoroutine(DelayNext());
+        }
+
+        private IEnumerator DelayNext()
+        {
+            yield return new WaitForSeconds(1f);
+            inputEvent.SwitchActionMap(Constants.UI_MAP, true);
+            Runner.Next();
         }
 
         private void EndTutorial(InputAction.CallbackContext ctx)

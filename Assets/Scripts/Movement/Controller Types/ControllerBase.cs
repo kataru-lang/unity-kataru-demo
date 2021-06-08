@@ -51,17 +51,12 @@ namespace JnA.Platformer
 
         protected virtual void Move()
         {
-            if (IsMaxVelocity()) return;
             float mult = GetMoveMultiplier();
-            Vector2 force = new Vector2(GetMoveSpeedX(mult), GetMoveSpeedY(mult));
-            rbody.AddForce(force);
+            Vector2 velocity = new Vector2(GetMoveSpeedX(mult), GetMoveSpeedY(mult));
+            rbody.velocity = velocity;
         }
 
-        protected virtual bool IsMaxVelocity() => CheckVelocitySingleAxis(rbody.velocity.x) || CheckVelocitySingleAxis(rbody.velocity.y);
-
-        bool CheckVelocitySingleAxis(float velocity) => Mathf.Abs(velocity) >= (running ? data.maxRunVelocity : data.maxWalkVelocity);
-
-        protected virtual float GetMoveMultiplier() => (running ? data.runForce : data.walkForce) * rbody.mass;
+        protected virtual float GetMoveMultiplier() => (running ? data.runVelocity : data.walkVelocity) * rbody.mass;
 
         protected virtual float GetMoveSpeedY(float mult) => mult * axis.y;
 

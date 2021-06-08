@@ -13,9 +13,10 @@ For syntax highlighting, download the [Kataru Extension](https://marketplace.vis
 Contains:
 - Scene loading framework
 - Dialogue UI framework
-- Basic AudioMixer setup
 - Camera stacking
-- Basic player control
+- Basic AudioMixer setup
+- Basic player movement
+- Basic tutorial system
 - Settings/rebinding controls
 - A ton of Kataru commands
 - Saving and loading via Kataru

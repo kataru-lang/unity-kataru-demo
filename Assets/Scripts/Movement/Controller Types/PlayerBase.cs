@@ -118,8 +118,6 @@ namespace JnA.Platformer
 
         protected virtual void EndMove(InputAction.CallbackContext ctx)
         {
-            // tell controller we've stopped moving
-            controller.axis.y = 0;
             controller.EndMove();
         }
 

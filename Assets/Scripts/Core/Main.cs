@@ -69,15 +69,15 @@ namespace JnA.Core
             sceneDatabase.OnLoaded += OnLoadedScene;
         }
 
-        private void TrySwitchActionMap(string map)
+        private void TrySwitchActionMap(string map, bool ignoreKataru = false)
         {
-            if (!TryRequestActionMap(map)) return;
+            if (!TryRequestActionMap(map, ignoreKataru)) return;
             playerInput.SwitchCurrentActionMap(map);
         }
 
-        private bool TryRequestActionMap(string map)
+        private bool TryRequestActionMap(string map, bool ignoreKataru)
         {
-            if (Kataru.Runner.isRunning)
+            if (Kataru.Runner.isRunning && !ignoreKataru)
             {
                 Debug.Log($"Action map request {map} rejected: Kataru currently running");
                 return false;

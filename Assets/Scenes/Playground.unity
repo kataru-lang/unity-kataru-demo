@@ -545,7 +545,6 @@ GameObject:
   - component: {fileID: 374789014}
   - component: {fileID: 374789013}
   - component: {fileID: 374789012}
-  - component: {fileID: 374789011}
   - component: {fileID: 374789010}
   - component: {fileID: 374789009}
   - component: {fileID: 374789015}
@@ -596,32 +595,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!61 &374789011
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 374789008}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 1}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
-    oldSize: {x: 2.25, y: 1.875}
-    newSize: {x: 2.25, y: 1.875}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2.25, y: 1.875}
-  m_EdgeRadius: 0
 --- !u!50 &374789012
 Rigidbody2D:
   serializedVersion: 4
@@ -1918,7 +1891,6 @@ GameObject:
   - component: {fileID: 1396737540}
   - component: {fileID: 1396737539}
   - component: {fileID: 1396737538}
-  - component: {fileID: 1396737537}
   - component: {fileID: 1396737536}
   - component: {fileID: 1396737535}
   - component: {fileID: 1396737534}
@@ -1986,32 +1958,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!61 &1396737537
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1396737533}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 1}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
-    oldSize: {x: 2.25, y: 1.875}
-    newSize: {x: 2.25, y: 1.875}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2.25, y: 1.875}
-  m_EdgeRadius: 0
 --- !u!50 &1396737538
 Rigidbody2D:
   serializedVersion: 4
@@ -2804,10 +2750,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 14.161478, y: 6.149247}
-      - {x: -13.83765, y: 6.1181593}
-      - {x: -13.89012, y: -2.1068487}
-      - {x: 14.306451, y: -1.9983053}
+    - - {x: 14.883246, y: 7.8093133}
+      - {x: -13.83765, y: 7.633872}
+      - {x: -13.89012, y: -3.1173239}
+      - {x: 15.028218, y: -3.3696651}
 --- !u!1001 &6460872224150835897
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2817,7 +2763,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6460872225523002266, guid: 1c4c27fd3eb9043ef92f5431b6cd85f6, type: 3}
       propertyPath: passage
-      value: None
+      value: Start
       objectReference: {fileID: 0}
     - target: {fileID: 6460872225523002266, guid: 1c4c27fd3eb9043ef92f5431b6cd85f6, type: 3}
       propertyPath: audioClips._keys.Array.size
