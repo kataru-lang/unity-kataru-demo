@@ -42,6 +42,11 @@ Cool misc features:
 
 You can test out Windows, Mac and Linux builds [here](https://zephyo1.itch.io/unity-kataru-demo). Note that Kataru is not ready for WebGL yet.   
 
+## Installation
+1. Clone repo
+2. Init Kataru submodule
+
+TODO: Remove submodule and add Kataru as a git reference in manifest instead.
 
 ## Implementation notes
 
