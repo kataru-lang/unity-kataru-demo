@@ -86,3 +86,10 @@ GreenObserve:
       - GreenSlime.PlayAnimationState: [angry]
       - Think: Christ, nevermind.
       - GreenSlime.PlayAnimationState: [normal]
+
+Poster:
+  - if $Poster.completed == 0:
+      - Think: A poster of myself.
+      - I look simply slimetastic.
+    else:
+      - Think: I'm drop dead gorgeous.

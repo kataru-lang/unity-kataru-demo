@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine.Events;
 using DG.Tweening;
 using JnA.UI.Settings;
+using System.Collections;
 
 namespace JnA.UI.Dialogue
 {
@@ -32,10 +33,19 @@ namespace JnA.UI.Dialogue
         // listener to textdialogue's OnShowLine event
         public void ShowText(string line)
         {
+            Debug.Log("show text " + line);
             ResetSpeed();
             text.text = line;
             text.ForceMeshUpdate();
             text.maxVisibleCharacters = 0;
+            StartCoroutine(Type());
+        }
+
+        private IEnumerator Type()
+        {
+            // Wait a couple frames to ensure that text info is populated accurately
+            yield return null;
+            yield return null;
             float duration = text.textInfo.characterCount * secondsPerChar;
             typeTween = DOTween.To(() => text.maxVisibleCharacters, (x) =>
             {

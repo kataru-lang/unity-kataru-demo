@@ -69,6 +69,7 @@ namespace Kataru
           #region Room2
             "Room2:BlueSlimeTalk",
             "Room2:GreenObserve",
+            "Room2:Poster",
           #endregion
         };
 
