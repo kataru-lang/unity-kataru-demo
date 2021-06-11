@@ -27,16 +27,10 @@ namespace JnA.UI.Dialogue
         [SerializeField] TextMeshProUGUI text;
         [SerializeField] Image[] bubbleImages;
 
-        string currCharacter = string.Empty;
-
         public void TrySetStyle(string character)
         {
-            if (character != currCharacter)
-            {
-                if (styleDict.TryGetValue(character, out DialogueStyle style))
-                    SetColor(style.textColor, style.bubbleColor);
-                currCharacter = character;
-            }
+            if (styleDict.TryGetValue(character, out DialogueStyle style))
+                SetColor(style.textColor, style.bubbleColor);
         }
 
         private void SetColor(Color textColor, Color bubbleColor)
