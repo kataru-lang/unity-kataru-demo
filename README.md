@@ -11,15 +11,16 @@ Kataru yml files located in Assets/Kataru/Editor.
 For syntax highlighting, download the [Kataru Extension](https://marketplace.visualstudio.com/items?itemName=Kataru.vscode-kataru).
 
 Contains:
+- A ton of Kataru commands
+- Saving and loading via Kataru
 - Scene loading framework
 - Dialogue UI framework
-- Camera stacking
 - Basic AudioMixer setup
 - Basic player movement
 - Basic tutorial system
 - Settings/rebinding controls
-- A ton of Kataru commands
-- Saving and loading via Kataru
+- Closeups framework
+- Camera stacking
 
 As well as the following third party packages:
 - Input System
