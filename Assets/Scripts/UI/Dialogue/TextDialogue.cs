@@ -5,12 +5,6 @@ using Kataru;
 
 namespace JnA.UI.Dialogue
 {
-    public enum TextType
-    {
-        All,
-        Think,
-        Say
-    }
 
     /// <summary>
     /// Base class for text displayed dialogue.

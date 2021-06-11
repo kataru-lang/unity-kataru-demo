@@ -20,7 +20,6 @@ namespace JnA.UI.Dialogue
     /// </summary>
     public class DialogueSfx : MonoBehaviour
     {
-        [SerializeField] TextType textType = TextType.All;
         [InfoBox("Dictionary of character names to voice blips.", EInfoBoxType.Normal)]
         [SerializeField] protected VoiceBlipsDictionary voiceBlipsDict;
         [InfoBox("If character key not found in voiceBlipsDict, then can resort to defaultBlips.", EInfoBoxType.Normal)]
@@ -32,23 +31,13 @@ namespace JnA.UI.Dialogue
 
         string currCharacter = string.Empty;
 
-        protected void OnEnable()
+        public void TrySetSfx(string character)
         {
-            if (textType == TextType.All || textType == TextType.Say)
-                dialogueEvent.SayLine += SetCharacterSay;
-            if (textType == TextType.All || textType == TextType.Think)
-                dialogueEvent.ThinkLine += SetCharacter;
+            if (character != currCharacter)
+            {
+                currCharacter = character;
+            }
         }
-
-        protected void OnDisable()
-        {
-            dialogueEvent.SayLine -= SetCharacterSay;
-            dialogueEvent.ThinkLine -= SetCharacter;
-        }
-
-        void SetCharacter(Kataru.Dialogue dialogue) => currCharacter = dialogue.name;
-
-        void SetCharacterSay(Kataru.Dialogue dialogue, Transform target) => SetCharacter(dialogue);
 
         // listener to textAnimatorPlayer OnCharacterVisible
         public void OnChar(char c)
