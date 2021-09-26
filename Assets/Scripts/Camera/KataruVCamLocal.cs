@@ -11,8 +11,8 @@ public class KataruVCamLocal : Handler
     #region KATARU FIELDS
     [SerializeField] [Dropdown("NamespaceList")] string kataruNamespace = Namespaces.Global;
     [SerializeField] [Dropdown("CharacterList")] string reference = Characters.None;
-    protected List<string> NamespaceList() => Namespaces.All();
-    protected List<string> CharacterList() => Characters.AllInNamespace(kataruNamespace);
+    protected string[] NamespaceList() => Namespaces.All();
+    protected string[] CharacterList() => Characters.InNamespace(kataruNamespace);
     protected override string Name
     {
         get => reference.ToString();

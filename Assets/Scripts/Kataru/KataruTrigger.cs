@@ -12,7 +12,7 @@ namespace Kataru
     {
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.gameObject.CompareTag(Constants.PLAYER_TAG))
+            if (other.gameObject.CompareTag(JnA.Utils.Constants.PLAYER_TAG))
                 base.OnInteract();
         }
     }

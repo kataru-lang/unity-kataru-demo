@@ -15,8 +15,8 @@ namespace Kataru
         [SerializeField] Transform[] destinations;
         [SerializeField] [Dropdown("NamespaceList")] string kataruNamespace = Namespaces.Global;
         [SerializeField] [Dropdown("CharacterList")] string character = Characters.None;
-        protected List<string> NamespaceList() => Namespaces.All();
-        protected List<string> CharacterList() => Characters.AllInNamespace(kataruNamespace);
+        protected string[] NamespaceList() => Namespaces.All();
+        protected string[] CharacterList() => Characters.InNamespace(kataruNamespace);
         protected override string Name
         {
             get => character.ToString();
