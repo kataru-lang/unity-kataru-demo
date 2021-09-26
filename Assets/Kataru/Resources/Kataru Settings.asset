@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb5b9b1880ee3c0458536fa3f0cf1ded, type: 3}
   m_Name: Kataru Settings
   m_EditorClassIdentifier: 
-  sourcePath: Assets/Third Party/Kataru
+  codegenPath: Assets/Scripts/Kataru/Constants.Generated.cs
   storyPath: Kataru/Editor/
   bookmarkPath: Kataru/Bookmark.yml
   targetPath: Kataru/story.bin

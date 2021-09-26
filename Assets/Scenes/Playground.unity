@@ -1281,7 +1281,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueEvent: {fileID: 11400000, guid: 3d90a6de5852d2142907903226054b7a, type: 2}
   dialogueTarget: {fileID: 1507341126}
-  kataruNamespace: Global
+  kataruNamespace: global
   character: Slime
 --- !u!114 &695219630
 MonoBehaviour:
@@ -1296,7 +1296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 695219627}
-  kataruNamespace: Global
+  kataruNamespace: global
   reference: Slime
 --- !u!1 &740747076
 GameObject:
