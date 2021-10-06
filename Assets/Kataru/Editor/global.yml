@@ -13,6 +13,9 @@ characters:
   Think:
   Slime:
   GlobalLight:
+  Test:
+
+# Comment
 
 commands:
   # Global commands
@@ -148,6 +151,7 @@ Start:
       - ShowTutorial: [Run, true]
       - Lastly, I can also interact with other slimes!
       - set: { $finishedTutorial: true }
+
       - ShowTutorial: [Interact]
       - Save: []
 
