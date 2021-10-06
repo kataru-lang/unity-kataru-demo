@@ -98,14 +98,14 @@ namespace Kataru
         }
 #endif
 
-        [CommandHandler]
+        [CommandHandler(autoNext: false)]
         void LoadScene(string scene)
         {
             sceneDB.LoadScene(scene);
             sceneDB.OnLoaded += OnSceneLoadedNextLine;
         }
 
-        [CommandHandler]
+        [CommandHandler(autoNext: false)]
         void Wait(double duration)
         {
             StartCoroutine(Runner.DelayedNext((float)duration));
@@ -123,7 +123,6 @@ namespace Kataru
             }
 #endif
             Runner.Save();
-            Runner.Next();
         }
 
         #region MUSIC
@@ -131,7 +130,6 @@ namespace Kataru
         void TransitionToSnapshot(string snapshot, double seconds)
         {
             audioEvent.TransitionTo(snapshot, (float)seconds);
-            Runner.Next();
         }
         #endregion
 
