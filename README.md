@@ -2,7 +2,7 @@
 ![Screenshot 1](Screenshot1.png)
 ![Screenshot 2](Screenshot2.png)
 ## About
-Pretty big Unity starter project with Kataru submodule. Tested on 2021.1.9f1. 
+Pretty big Unity starter project with Kataru submodule. Tested on 2020.3.31f1 (LTS). 
 
 Topdown 2D but I imagine it's pretty easy to convert it to another style.
 
@@ -48,6 +48,11 @@ You can test out Windows, Mac and Linux builds [here](https://zephyo1.itch.io/un
 2. Init Kataru submodule
 
 TODO: Remove submodule and add Kataru as a git reference in manifest instead.
+
+
+## How to Play
+
+Open "Core" scene then open "StartMenu" as additive scene.
 
 ## Implementation notes
 
