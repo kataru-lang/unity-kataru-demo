@@ -14,13 +14,6 @@
       "dependencies": {},
       "url": "https://package.openupm.com"
     },
-    "com.katarulang.unitykataru": {
-      "version": "https://github.com/kataru-lang/unity-kataru.git",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "7b0650bf03d16435fc0f949dbb50d375b22b7838"
-    },
     "com.unity.2d.animation": {
       "version": "5.1.0",
       "depth": 1,
