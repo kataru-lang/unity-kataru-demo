@@ -55,7 +55,7 @@ namespace JnA.UI
             }
         }
 
-        [Kataru.CommandHandler]
+        [Kataru.CommandHandler(autoNext: false)]
         private void FadeOutScreen(double duration, bool wait)
         {
             if (wait)
