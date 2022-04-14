@@ -17,8 +17,8 @@ namespace Kataru
         [SerializeField] protected DialogueEvent dialogueEvent;
 
         #region PASSAGE
-        [SerializeField] [Dropdown("NamespaceList")] protected string kataruNamespace = Namespaces.Global;
-        [SerializeField] [Dropdown("PassagesList")] protected string passage = Passages.None;
+        [SerializeField][Dropdown("NamespaceList")] protected string kataruNamespace = Namespaces.Global;
+        [SerializeField][Dropdown("PassagesList")] protected string passage = Passages.None;
         protected string[] NamespaceList() => Namespaces.All();
         protected string[] PassagesList() => Passages.InNamespace(kataruNamespace);
         #endregion
@@ -55,8 +55,6 @@ namespace Kataru
 
         public void OnInteract()
         {
-            dialogueEvent.RunPassage(passage);
-
             if (collider2d != null)
             {
                 collider2d.enabled = false;
@@ -67,6 +65,8 @@ namespace Kataru
             {
                 Destroy(this);
             }
+
+            dialogueEvent.RunPassage(passage);
         }
 
         void EnableCollider()
