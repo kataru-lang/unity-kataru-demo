@@ -100,6 +100,7 @@ namespace JnA.UI
                         inputEvent.RevertToSceneMap();
                         currentAction.performed += RunnerNextListener;
                     }
+                    else Runner.Next();
                     currentAction.performed += EndTutorial;
                 }
             }
