@@ -54,6 +54,8 @@ namespace JnA.UI
 
         InputAction currentAction;
 
+        bool readyToDestroy = true;
+
         private void Start()
         {
             Load();
@@ -84,23 +86,23 @@ namespace JnA.UI
         [CommandHandler(autoNext: false)]
         void ShowTutorial(string key, bool wait)
         {
-            bool showedTutorial = false;
             if (tutorials.TryGetValue(key, out Tutorial tutorial))
             {
                 if (!tutorial.completed)
                 {
                     image.sprite = tutorial.guide;
                     image.SetNativeSize();
+                    DOTween.Kill(image);
                     image.DOFade(1, 0.3f);
-                    currentAction = inputEvent.input.FindActionMap(Constants.PLAYER_MAP, true).FindAction(key, true);
+                    currentAction = inputEvent.input.FindActionMap(JnA.Utils.Constants.PLAYER_MAP, true).FindAction(key, true);
+                    if (wait)
+                    {
+                        inputEvent.RevertToSceneMap();
+                        currentAction.performed += RunnerNextListener;
+                    }
+                    else Runner.Next();
                     currentAction.performed += EndTutorial;
-                    showedTutorial = true;
                 }
-            }
-            if (wait && showedTutorial)
-            {
-                inputEvent.RevertToSceneMap();
-                currentAction.performed += RunnerNextListener;
             }
             else Runner.Next();
         }
@@ -113,16 +115,17 @@ namespace JnA.UI
 
         private IEnumerator DelayNext()
         {
+            readyToDestroy = false;
             yield return new WaitForSeconds(1f);
-            inputEvent.SwitchActionMap(Constants.UI_MAP, true);
+            inputEvent.SwitchActionMap(JnA.Utils.Constants.UI_MAP, true);
             Runner.Next();
+            readyToDestroy = true;
         }
 
         private void EndTutorial(InputAction.CallbackContext ctx)
         {
             currentAction.performed -= EndTutorial;
             image.DOFade(0, 0.6f);
-            PlayerPrefs.SetInt(currentAction.name, 1);
             tutorials[currentAction.name].completed = true;
             Save();
             TryDestroy();
@@ -137,6 +140,12 @@ namespace JnA.UI
                     return;
                 }
             }
+            StartCoroutine(RunTryDestroy());
+        }
+
+        IEnumerator RunTryDestroy()
+        {
+            yield return new WaitUntil(() => readyToDestroy);
             Destroy(gameObject);
         }
     }
