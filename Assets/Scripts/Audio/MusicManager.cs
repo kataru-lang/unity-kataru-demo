@@ -68,12 +68,6 @@ namespace JnA.Audio
             }
 
             // Stop all audio tracks
-            foreach (var audioSource in audioSources)
-            {
-                audioSource.Stop();
-            }
-
-            // Stop all audio tracks
             numTracks = clips.Length;
             for (int i = 0; i < audioSources.Length; i++)
             {
