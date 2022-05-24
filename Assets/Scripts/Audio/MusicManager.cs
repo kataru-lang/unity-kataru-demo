@@ -73,13 +73,20 @@ namespace JnA.Audio
                 audioSource.Stop();
             }
 
-            // Update and start all provided clips each in its own track
+            // Stop all audio tracks
             numTracks = clips.Length;
-            for (int i = 0; i < numTracks; ++i)
+            for (int i = 0; i < audioSources.Length; i++)
             {
-                audioSources[i].clip = clips[i];
-                audioSources[i].time = 0f;
-                audioSources[i].Play();
+                AudioSource audioSource = audioSources[i];
+                if (i < numTracks && audioSource.clip == clips[i] && audioSource.volume != 0) continue; //if the clip is the same and you can hear it, don't stop it.
+                audioSource.Stop();
+                if (i < numTracks)
+                {
+                    // Update and start all provided clips each in its own track
+                    audioSources[i].clip = clips[i];
+                    audioSources[i].time = 0f;
+                    audioSources[i].Play();
+                }
             }
             audioEvent.RaiseChangedMusic(clips);
         }
