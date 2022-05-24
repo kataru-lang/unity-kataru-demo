@@ -34,7 +34,6 @@ namespace JnA.UI.Settings
 
         public void Prepare()
         {
-            resolutions = Screen.resolutions;
             qualities = QualitySettings.names;
             decreaseR.onClick.AddListener(DecreaseRes);
             increaseR.onClick.AddListener(IncreaseRes);
@@ -44,6 +43,7 @@ namespace JnA.UI.Settings
 
         public void Load()
         {
+            resolutions = Screen.resolutions;
             currentQuality = PlayerPrefs.GetInt(Q_KEY, QualitySettings.GetQualityLevel());
             currentResolution = PlayerPrefs.GetInt(RES_KEY, Array.FindIndex(resolutions,
              r => r.width == Screen.currentResolution.width && r.height == Screen.currentResolution.height));
@@ -102,9 +102,10 @@ namespace JnA.UI.Settings
         private void ApplyRes()
         {
             SetResButtons();
-            resolution.text = ResToString(resolutions[Mathf.Clamp(currentResolution, 0, resolutions.Length - 1)]);
-            PlayerPrefs.SetInt(RES_KEY, currentResolution);
-            Screen.SetResolution(resolutions[currentResolution].width, resolutions[currentResolution].height, true);
+            int clampedCurrent = Mathf.Clamp(currentResolution, 0, resolutions.Length - 1);
+            resolution.text = ResToString(resolutions[clampedCurrent]);
+            PlayerPrefs.SetInt(RES_KEY, clampedCurrent);
+            Screen.SetResolution(resolutions[clampedCurrent].width, resolutions[clampedCurrent].height, true);
         }
 
 
