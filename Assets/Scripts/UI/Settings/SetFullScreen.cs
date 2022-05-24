@@ -29,7 +29,7 @@ namespace JnA.UI.Settings
         public void Load()
         {
             int fs = PlayerPrefs.GetInt(KEY, fsDefault);
-            Screen.fullScreen = fs == 1;
+            toggle.isOn = fs == 1;
         }
 
         public void Sync()
@@ -41,6 +41,7 @@ namespace JnA.UI.Settings
         private void FullScreen(bool on)
         {
             PlayerPrefs.SetInt(KEY, on ? 1 : 0);
+            Screen.fullScreen = on;
         }
     }
 }
