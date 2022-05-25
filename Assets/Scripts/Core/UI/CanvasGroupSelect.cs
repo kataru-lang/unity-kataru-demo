@@ -59,10 +59,10 @@ namespace JnA.Core
 
         public Tween FadeOut(float duration = 0.3f, Action onComplete = null)
         {
+            if (deselectOnOut) EventSystem.current.SetSelectedGameObject(null);
             return group.FadeOut(duration, onComplete: () =>
             {
                 OnClose?.Invoke();
-                if (deselectOnOut) EventSystem.current.SetSelectedGameObject(null);
                 if (onComplete != null) onComplete();
             });
         }
