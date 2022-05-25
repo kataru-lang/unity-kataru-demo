@@ -22,6 +22,7 @@ namespace Kataru
         protected override void Awake()
         {
             base.Awake();
+            Runner.Load();
         }
 
         protected override void OnEnable()

@@ -7,7 +7,7 @@ using static UnityEngine.InputSystem.InputActionRebindingExtensions;
 
 namespace JnA.UI.Settings
 {
-    public class RebindSingle : MonoBehaviour, ISettingsSetter
+    public class RebindSingle : MonoBehaviour
     {
         [SerializeField] RebindEvent rebindEvent;
         [SerializeField] RebindData rebindData;
@@ -17,57 +17,9 @@ namespace JnA.UI.Settings
 
         private RebindingOperation rebind;
 
-
-        private void Start()
-        {
-            Load();
-        }
-
-        public void Prepare() { }
-
-        public void Load()
-        {
-            UpdateUI();
-        }
-
-        private void UpdateUI()
-        {
-            string currentBindingInput = GetBindingString(actions[0]);
-
-            Sprite currentDisplayIcon = rebindData.GetDeviceBindingIcon(currentBindingInput);
-
-            if (currentDisplayIcon)
-            {
-                bindingText.gameObject.SetActive(false);
-                bindingIcon.gameObject.SetActive(true);
-                bindingIcon.sprite = currentDisplayIcon;
-            }
-            else if (currentDisplayIcon == null)
-            {
-                bindingText.gameObject.SetActive(true);
-                bindingIcon.gameObject.SetActive(false);
-                bindingText.text = currentBindingInput;
-            }
-        }
-
-        virtual protected string GetBindingString(InputActionReference action)
-        {
-            int controlBindingIndex = action.action.GetBindingIndexForControl(Main.GetInputControl(action.action));
-            string currentBindingInput = InputControlPath.ToHumanReadableString(action.action.bindings[controlBindingIndex].effectivePath, InputControlPath.HumanReadableStringOptions.OmitDevice);
-            if (currentBindingInput == "Escape") return "Esc";
-            return currentBindingInput;
-            // return action.action.GetBindingDisplayString();
-        }
-
-
         virtual protected int GetBindingIndex(InputActionReference action)
         {
             return action.action.GetBindingIndexForControl(Main.GetInputControl(action.action));
-        }
-
-        public void Sync()
-        {
-            Load();
         }
 
         public void StartRebinding()
@@ -99,18 +51,14 @@ namespace JnA.UI.Settings
             if (nullableBind != null)
             {
                 var bind = (InputBinding)nullableBind;
-                for (int i = 1; i < actions.Length; i++)
-                {
-                    InputActionReference action = actions[i];
-                    int bindingIndex = GetBindingIndex(action);
-                    Debug.Log($"Binding {action.action.name} to index {bindingIndex} with bind {bind.name}");
-                    action.action.ApplyBindingOverride(bindingIndex, bind);
-                }
+                ApplyOverrideBinding(bind.overridePath);
+#if UNITY_EDITOR
+                Debug.Log($"Set key at {Rebind.REBIND_KEY + actions[0].name}");
+#endif
+                PlayerPrefs.SetString(Rebind.REBIND_KEY + actions[0].name, bind.overridePath);
             }
             rebind.Dispose();
             rebind = null;
-
-            UpdateUI();
 
             rebindEvent.OnShowWaitForInput(false);
 
@@ -118,6 +66,52 @@ namespace JnA.UI.Settings
             {
                 actions[0].action.Enable();
             }
+        }
+
+        public void ApplyOverrideBindingFromSave()
+        {
+            string overridePath = PlayerPrefs.GetString(Rebind.REBIND_KEY + actions[0].name, null);
+            if (string.IsNullOrEmpty(overridePath)) return;
+            ApplyOverrideBinding(overridePath);
+        }
+
+        protected void ApplyOverrideBinding(string overridePath)
+        {
+            for (int i = 1; i < actions.Length; i++)
+            {
+                InputActionReference action = actions[i];
+                int bindingIndex = GetBindingIndex(action);
+#if UNITY_EDITOR
+                Debug.Log($"Binding {action.action.name} to index {bindingIndex} with bind path {overridePath}");
+#endif
+                action.action.ApplyBindingOverride(bindingIndex, overridePath);
+            }
+            UpdateUI(overridePath);
+        }
+
+        private void UpdateUI(string overridePath)
+        {
+            string currentBindingInput = GetBindingString(overridePath);
+
+            Sprite currentDisplayIcon = rebindData.GetDeviceBindingIcon(currentBindingInput);
+
+            if (currentDisplayIcon)
+            {
+                bindingText.gameObject.SetActive(false);
+                bindingIcon.gameObject.SetActive(true);
+                bindingIcon.sprite = currentDisplayIcon;
+            }
+            else if (currentDisplayIcon == null)
+            {
+                bindingText.gameObject.SetActive(true);
+                bindingIcon.gameObject.SetActive(false);
+                bindingText.text = currentBindingInput;
+            }
+        }
+
+        virtual protected string GetBindingString(string overridePath)
+        {
+            return InputControlPath.ToHumanReadableString(overridePath, InputControlPath.HumanReadableStringOptions.OmitDevice);
         }
     }
 }

@@ -9,15 +9,6 @@ namespace JnA.UI.Settings
     {
         [SerializeField] string partBinding;
 
-
-        override protected string GetBindingString(InputActionReference a)
-        {
-            int controlBindingIndex = GetBindingIndex(a);
-            string currentBindingInput = InputControlPath.ToHumanReadableString(a.action.bindings[controlBindingIndex].effectivePath, InputControlPath.HumanReadableStringOptions.OmitDevice);
-            return currentBindingInput;
-            // return action.action.GetBindingDisplayString();
-        }
-
         override protected RebindingOperation FormatRebind(InputActionReference a, RebindingOperation op)
         {
             var bindingIndex = GetBindingIndex(a);
@@ -33,7 +24,6 @@ namespace JnA.UI.Settings
 
         bool compare(InputBinding x, InputControl control)
         {
-            Debug.Log($"groups: '{x.groups}' contains device.displayName: '{control.device.displayName}' && {x.isPartOfComposite} && {x.name} == {partBinding}");
             return !x.isComposite && x.groups.Contains(control.device.displayName) && x.isPartOfComposite && x.name == partBinding;
         }
     }

@@ -7,10 +7,9 @@ namespace JnA.UI.Settings
     public class Rebind : MonoBehaviour
     {
         [SerializeField] RebindEvent rebindEvent;
-        [SerializeField] PlayerInput playerInput;
         [SerializeField] CanvasGroup waitForInput;
 
-        private const string REBIND_KEY = "controls";
+        public const string REBIND_KEY = "controls_";
 
         private void Awake()
         {
@@ -21,17 +20,11 @@ namespace JnA.UI.Settings
 
         private void Load()
         {
-            string rebinds = PlayerPrefs.GetString(REBIND_KEY, string.Empty);
-
-            if (string.IsNullOrEmpty(rebinds)) { return; }
-
-            // in the case of Bunnio
-            if (playerInput == null)
+            var rebinds = GetComponentsInChildren<RebindSingle>();
+            foreach (var rebind in rebinds)
             {
-                playerInput = FindObjectOfType<PlayerInput>();
+                rebind.ApplyOverrideBindingFromSave();
             }
-
-            playerInput.actions.LoadFromJson(rebinds);
         }
 
         private void Start()
@@ -45,13 +38,6 @@ namespace JnA.UI.Settings
                 waitForInput.FadeIn(0.1f);
             else
                 waitForInput.FadeOut(0.1f);
-        }
-
-        public void Save()
-        {
-            string rebinds = playerInput.actions.ToJson();
-
-            PlayerPrefs.SetString(REBIND_KEY, rebinds);
         }
     }
 }

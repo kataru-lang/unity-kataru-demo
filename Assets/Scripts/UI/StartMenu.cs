@@ -14,7 +14,7 @@ namespace JnA.UI
     {
         [Header("Start Game")]
         [SerializeField] DialogueEvent dialogueEvent;
-        [Scene] [SerializeField] string startScene;
+        [Scene][SerializeField] string startScene;
         [SerializeField] SceneDB sceneDB;
         [SerializeField] PauseEvent pauseEvent;
         [SerializeField] SettingsEvent settingsEvent;
@@ -64,7 +64,6 @@ namespace JnA.UI
 
         private void TryLoadGame()
         {
-            Runner.Load();
             menuCanvas.group.FadeOut(0.2f);
             sceneDB.LoadScene(startScene);
             pauseEvent.EnablePause(true);
