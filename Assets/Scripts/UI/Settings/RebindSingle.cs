@@ -71,7 +71,13 @@ namespace JnA.UI.Settings
         public void ApplyOverrideBindingFromSave()
         {
             string overridePath = PlayerPrefs.GetString(Rebind.REBIND_KEY + actions[0].name, null);
-            if (string.IsNullOrEmpty(overridePath)) return;
+            if (string.IsNullOrEmpty(overridePath))
+            {
+                // update ui with default binding
+                int bindingIndex = GetBindingIndex(actions[0]);
+                UpdateUI(actions[0].action.bindings[bindingIndex].effectivePath);
+                return;
+            }
             ApplyOverrideBinding(overridePath);
         }
 
