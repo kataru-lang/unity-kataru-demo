@@ -17,9 +17,9 @@ namespace JnA.Core
     /// </summary>
     public class MainBase : MonoBehaviour
     {
-        [BoxGroup("Input")] [SerializeField] protected InputEvent inputEvent;
-        [BoxGroup("Pause")] [SerializeField] protected CanvasGroupSelect pauseMenu;
-        [BoxGroup("Pause")] [SerializeField] protected PauseEvent pauseEvent;
+        [BoxGroup("Input")][SerializeField] protected InputEvent inputEvent;
+        [BoxGroup("Pause")][SerializeField] protected CanvasGroupSelect pauseMenu;
+        [BoxGroup("Pause")][SerializeField] protected PauseEvent pauseEvent;
         protected InputAction playerPause, uiPause;
         protected bool paused = false;
 
@@ -64,6 +64,12 @@ namespace JnA.Core
 
         public virtual void TogglePause()
         {
+            // first, check - if we're currently paused but the pause menu isn't visible, return
+            if (paused && pauseMenu.group.alpha != 1)
+            {
+                return;
+            }
+
             paused = !paused;
             if (paused)
             {
