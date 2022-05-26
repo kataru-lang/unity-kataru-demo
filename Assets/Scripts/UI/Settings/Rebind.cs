@@ -14,17 +14,6 @@ namespace JnA.UI.Settings
         private void Awake()
         {
             rebindEvent.OnShowWaitForInput = ShowWaitForInput;
-
-            Load();
-        }
-
-        private void Load()
-        {
-            var rebinds = GetComponentsInChildren<RebindSingle>();
-            foreach (var rebind in rebinds)
-            {
-                rebind.ApplyOverrideBindingFromSave();
-            }
         }
 
         private void Start()

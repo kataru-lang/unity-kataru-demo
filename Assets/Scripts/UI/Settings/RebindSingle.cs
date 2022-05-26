@@ -17,6 +17,11 @@ namespace JnA.UI.Settings
 
         private RebindingOperation rebind;
 
+        private void Awake()
+        {
+            ApplyOverrideBindingFromSave();
+        }
+
         virtual protected int GetBindingIndex(InputActionReference action)
         {
             return action.action.GetBindingIndexForControl(Main.GetInputControl(action.action));
