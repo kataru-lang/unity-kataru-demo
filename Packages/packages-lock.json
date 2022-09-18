@@ -19,7 +19,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "6616c826bf4f045a7fca675b661a35f1cd42da4c"
+      "hash": "1cee87e4ceebc35e01ffc0e4a681962a5fd50d13"
     },
     "com.unity.2d.animation": {
       "version": "5.1.0",
@@ -45,12 +45,12 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.2d.psdimporter": {
-      "version": "4.1.3",
+      "version": "4.2.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.unity.2d.common": "4.0.4",
-        "com.unity.2d.animation": "5.0.10",
+        "com.unity.2d.common": "4.1.0",
+        "com.unity.2d.animation": "5.1.0",
         "com.unity.2d.sprite": "1.0.0"
       },
       "url": "https://packages.unity.com"
